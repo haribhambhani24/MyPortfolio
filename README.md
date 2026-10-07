@@ -1,11 +1,11 @@
-# Hari Bhambhani - Developer Portfolio
+# Hari Bhambhani - Portfolio
 
 A responsive personal portfolio website created with clean HTML5, CSS3, and JavaScript. Designed to showcase my projects, core engineering coursework (Java, Data Structures & Algorithms, DBMS & SQL), hackathon achievements, and technical background as a Computer Engineering undergraduate at VESIT, Mumbai.
 
 ---
 
 ## 🌟 Live Demo
-👉 **[View Portfolio](https://haribhambhani24.github.io/MyPortfolio/)** *(update URL once GitHub Pages is enabled)*
+👉 **[View Portfolio](https://haribhambhani24.github.io/MyPortfolio/)**
 
 ---
 
