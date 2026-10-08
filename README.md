@@ -1,6 +1,6 @@
-# Hari Bhambhani - Portfolio
+# Hari Bhambhani - Personal Portfolio
 
-A responsive personal portfolio website created with clean HTML5, CSS3, and JavaScript. Designed to showcase my projects, core engineering coursework (Java, Data Structures & Algorithms, DBMS & SQL), hackathon achievements, and technical background as a Computer Engineering undergraduate at VESIT, Mumbai.
+A fast, responsive, and accessible personal portfolio website built with modern HTML5, CSS3, and JavaScript. Designed to showcase my engineering coursework (Java, Data Structures & Algorithms, DBMS & SQL), coursework projects, hackathon achievements, and background as a 2nd-year Computer Engineering undergraduate at VESIT, Mumbai.
 
 ---
 
@@ -9,40 +9,61 @@ A responsive personal portfolio website created with clean HTML5, CSS3, and Java
 
 ---
 
-## 💻 Tech Stack & Tools
-- **Markup**: Semantic HTML5
-- **Styling**: Vanilla CSS3 (Custom Properties, Flexbox, CSS Grid, Responsive Design)
-- **Logic**: Vanilla JavaScript (ES6+)
+## 💻 Tech Stack & Standards
+- **Markup**: Semantic HTML5 with accessibility best practices (ARIA roles, keyboard skip links, native `<dialog>`)
+- **Styling**: Vanilla CSS3 (Custom properties / theme tokens, Flexbox, CSS Grid, scroll-driven animations, backdrop blur)
+- **Logic**: Modern Vanilla JavaScript (IntersectionObserver, Dialog API, throttled requestAnimationFrame, Clipboard API)
 - **Typography & Icons**: Google Fonts (*Inter*, *Fira Code*), FontAwesome 6.5
+- **Performance**: Zero external JavaScript frameworks, LCP image priority hints, zero Cumulative Layout Shift (CLS)
 
 ---
 
-## 🚀 Key Features
-- **Dynamic Hero Section**: Includes interactive typewriter text cycling through core study areas (*OOP with Java*, *DSA*, *DBMS & SQL*) and direct resume access.
-- **Projects Showcase**: 
-  - *Personal Portfolio Website* (HTML/CSS/JS)
-  - *Attendance Tracker* (Upcoming college coursework project in Java & SQL)
-- **Technical Skills**: Structured categories covering Core Fundamentals (OOP, DSA, DBMS), Programming Languages, Web Basics, and Developer Tools.
-- **Certifications & Hackathons**: High-resolution certificate previews and direct full-view links for:
-  - *Hack-AI-Thon 4.0* (Certificate of Achievement, AI-CoLegion VESIT)
-  - *SYRUS Hackathon (MARCH 2026)* (Certificate of Participation, CodeCell++ VESIT)
-- **Quick Connect**: Interactive copy-to-clipboard actions for phone/email and a direct `mailto:` contact form.
+## 🚀 Key Features & UX Highlights
+
+- **Dynamic Hero Section**:
+  - Interactive typewriter effect cycling through core study domains (*OOP with Java*, *DSA*, *DBMS & SQL*).
+  - Respects user accessibility preferences (`prefers-reduced-motion`).
+  - Direct access to download/view resume (`Hari_Bhambhani_Resume.pdf`).
+
+- **Academic & Personal Projects**:
+  - *Personal Portfolio Website*: Built with HTML5, CSS3, and JavaScript.
+  - *Attendance Tracker*: Upcoming coursework project automating attendance records and threshold alerts using Java and SQL.
+
+- **Technical Skills**:
+  - **Core Fundamentals**: Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA), Database Management (DBMS).
+  - **Programming Languages**: Java (Core & OOP), SQL (Relational Queries).
+  - **Web Basics**: HTML5, CSS3 & Flexbox.
+  - **Developer Tools**: Git, GitHub, VS Code, Chrome DevTools.
+
+- **Certifications & Hackathons (with In-Page Lightbox Modal)**:
+  - *Hack-AI-Thon 4.0* (Certificate of Achievement, AI-CoLegion VESIT).
+  - *SYRUS Hackathon (MARCH 2026)* (Certificate of Participation, CodeCell++ VESIT).
+  - **Native Lightbox Modal (`<dialog>`)**: Clicking any certificate opens an in-page preview with verified credentials, light-dismiss (clicking outside or pressing <kbd>Esc</kbd>), and direct link to view full-resolution files.
+
+- **Interactive Quick Connect**:
+  - **Tactile Copy Feedback**: One-click copy for Phone and Email with immediate icon morphing (emerald checkmark), tooltip confirmation, and floating toast notifications.
+  - **Contact Form**: Direct `mailto:` message builder with live character counter (`0 / 500`) and field validation.
+
+- **Smooth Navigation & UX Polish**:
+  - **Reading Scroll Progress Bar**: A sleek top gradient indicator driven by scroll timeline.
+  - **Accessible Keyboard Navigation**: "Skip to main content" link and distinct `:focus-visible` focus rings.
+  - **Floating Scroll-To-Top**: Smooth scrolling return button when navigating long pages.
 
 ---
 
 ## 📁 Repository Structure
 ```
 MyPortfolio/
-├── .gitignore          # Git ignore rules for OS and IDE files
-├── README.md           # Repository documentation
-├── index.html          # Main application structure & content
-├── script.js           # Client-side typewriter, nav drawer & interactions
-├── style.css           # Design system tokens, layout & responsive styling
+├── .gitignore                                  # Git ignore rules for OS & editor artifacts
+├── README.md                                   # Project documentation & overview
+├── index.html                                  # Semantic HTML5 document & modal dialog
+├── script.js                                   # Interactions, modal handling & UX logic
+├── style.css                                   # Design system tokens, animations & responsive styling
 └── src/
-    ├── Formal_pic.png                                  # Profile avatar
-    ├── Hari_Bhambhani_Resume.pdf                       # PDF Resume
+    ├── Formal_pic.png                          # Profile photo
+    ├── Hari_Bhambhani_Resume.pdf               # Resume document
     ├── Hack-AI-Thon 4.0 (AI-CoLegion) Certificate.png   # Certificate image
-    └── SYRUS-CodeCell VESIT Certificate.png            # Certificate image
+    └── SYRUS-CodeCell VESIT Certificate.png    # Certificate image
 ```
 
 ---
@@ -58,7 +79,7 @@ To run this project locally:
    ```bash
    cd MyPortfolio
    ```
-3. Open `index.html` in your favorite web browser (or use VS Code's **Live Server** extension).
+3. Open `index.html` in your favorite web browser, or launch using VS Code's **Live Server** extension.
 
 ---
 
