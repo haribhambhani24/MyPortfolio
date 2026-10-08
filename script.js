@@ -1,7 +1,7 @@
 /**
  * Hari Bhambhani - Developer Portfolio Script
- * Handles typewriter mechanics, mobile navigation, cursor tracking,
- * scroll-reveal animations, copy-to-clipboard actions, and form handling.
+ * Handles typewriter mechanics, mobile navigation, accessible certificate lightbox,
+ * scroll progress indicators, scroll-reveal animations, tactile copy feedback, and form UX.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,8 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let isDeleting = false;
   const typingElement = document.getElementById("typingText");
 
+  // Check user preference for reduced motion
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   function typeEffect() {
     if (!typingElement) return;
+
+    if (prefersReducedMotion) {
+      typingElement.textContent = words[0];
+      return;
+    }
 
     const currentWord = words[wordIndex];
 
@@ -88,47 +96,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- 3. Navbar Sticky State & Scroll-to-Top Button ---
+  // --- 3. Navbar Sticky State, Scroll Progress, & Scroll-to-Top Button ---
   const navbar = document.getElementById("navbar");
   const scrollTopBtn = document.getElementById("scrollTopBtn");
-
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-
-    // Navbar shadow & darker blur on scroll
-    if (navbar) {
-      if (scrollY > 30) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-    }
-
-    // Scroll to Top Button Visibility
-    if (scrollTopBtn) {
-      if (scrollY > 350) {
-        scrollTopBtn.classList.add("visible");
-      } else {
-        scrollTopBtn.classList.remove("visible");
-      }
-    }
-  });
-
-  if (scrollTopBtn) {
-    scrollTopBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
-  }
-
-  // --- 4. ScrollSpy (Active Navigation Highlighting) ---
+  const scrollProgressBar = document.getElementById("scrollProgressBar");
   const sections = document.querySelectorAll("section[id], header[id]");
   const navLinks = document.querySelectorAll(".nav-link");
 
+  // Feature detection for native CSS scroll timeline
+  const hasNativeScrollTimeline = window.CSS && CSS.supports && CSS.supports("animation-timeline", "scroll()");
+
   function updateActiveNav() {
-    const scrollPosition = window.scrollY + 150;
+    const scrollPosition = window.scrollY + 160;
 
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
@@ -146,12 +125,59 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  window.addEventListener("scroll", updateActiveNav);
+  // Throttled scroll listener using requestAnimationFrame for smooth 60/120fps UX
+  let scrollTicking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
 
-  // --- 5. Scroll Reveal Animations ---
+          // Navbar shadow & blur
+          if (navbar) {
+            navbar.classList.toggle("scrolled", scrollY > 30);
+          }
+
+          // Scroll to top button visibility
+          if (scrollTopBtn) {
+            scrollTopBtn.classList.toggle("visible", scrollY > 350);
+          }
+
+          // Active nav highlight
+          updateActiveNav();
+
+          // Scroll progress fallback for browsers without CSS animation-timeline (e.g. Firefox)
+          if (!hasNativeScrollTimeline && scrollProgressBar) {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrollable > 0 ? scrollY / scrollable : 0;
+            scrollProgressBar.style.transform = `scaleX(${progress})`;
+          }
+
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    },
+    { passive: true }
+  );
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? "auto" : "smooth"
+      });
+    });
+  }
+
+  // Initial call on load
+  updateActiveNav();
+
+  // --- 4. Scroll Reveal Animations ---
   const revealElements = document.querySelectorAll(".reveal");
 
-  if ("IntersectionObserver" in window) {
+  if ("IntersectionObserver" in window && !prefersReducedMotion) {
     const revealObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
@@ -169,8 +195,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
     revealElements.forEach((el) => revealObserver.observe(el));
   } else {
-    // Fallback if IntersectionObserver is not supported
+    // Fallback if IntersectionObserver is not supported or reduced motion requested
     revealElements.forEach((el) => el.classList.add("active"));
+  }
+
+  // --- 5. Accessible Certificate Lightbox Modal (<dialog>) ---
+  const certModal = document.getElementById("certModal");
+  const certModalImg = document.getElementById("certModalImg");
+  const certModalTitle = document.getElementById("certModalTitle");
+  const certModalIssuer = document.getElementById("certModalIssuer");
+  const certModalClose = document.getElementById("certModalClose");
+  const certModalOpenNewTab = document.getElementById("certModalOpenNewTab");
+  const certTriggers = document.querySelectorAll(".cert-modal-trigger");
+
+  if (certModal && typeof certModal.showModal === "function") {
+    certTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (e) => {
+        // Let ctrl+click, command+click, or middle click open the image URL normally in new tab
+        if (e.ctrlKey || e.metaKey || e.button === 1) return;
+
+        e.preventDefault();
+        const certSrc = trigger.getAttribute("data-cert-src") || trigger.getAttribute("href");
+        const certTitle = trigger.getAttribute("data-cert-title") || "Certificate Preview";
+        const certIssuer = trigger.getAttribute("data-cert-issuer") || "";
+
+        if (certModalImg) {
+          certModalImg.src = certSrc;
+          certModalImg.alt = `${certTitle} Certificate`;
+        }
+        if (certModalTitle) certModalTitle.textContent = certTitle;
+        if (certModalIssuer) certModalIssuer.textContent = certIssuer;
+        if (certModalOpenNewTab) certModalOpenNewTab.href = certSrc;
+
+        certModal.showModal();
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function closeCertModal() {
+      if (certModal.open) {
+        certModal.close();
+        document.body.style.overflow = "";
+      }
+    }
+
+    if (certModalClose) {
+      certModalClose.addEventListener("click", closeCertModal);
+    }
+
+    certModal.addEventListener("close", () => {
+      document.body.style.overflow = "";
+    });
+
+    // Fallback light-dismiss for browsers without closedby="any" support
+    if (!("closedBy" in HTMLDialogElement.prototype)) {
+      certModal.addEventListener("click", (event) => {
+        if (event.target !== certModal) return;
+        const rect = certModal.getBoundingClientRect();
+        const isDialogContent =
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width;
+
+        if (!isDialogContent) {
+          closeCertModal();
+        }
+      });
+    }
   }
 
   // --- 6. Toast Notification Utility ---
@@ -191,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3200);
   }
 
-  // --- 7. Copy to Clipboard Functionality ---
+  // --- 7. Copy to Clipboard with Tactile Feedback ---
   const copyButtons = document.querySelectorAll(".copy-btn");
 
   copyButtons.forEach((btn) => {
@@ -218,37 +310,78 @@ document.addEventListener("DOMContentLoaded", () => {
           textArea.remove();
         }
 
+        // Tactile micro-interaction: turn icon into checkmark and glow green
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+        btn.classList.add("copied");
+        btn.setAttribute("title", "Copied!");
+
         showToast(`Copied to clipboard: ${textToCopy}`);
+
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+          btn.classList.remove("copied");
+          btn.setAttribute("title", "Copy to clipboard");
+        }, 2000);
       } catch (err) {
         showToast("Failed to copy text", "fa-solid fa-triangle-exclamation");
       }
     });
   });
 
-  // --- 8. Interactive Quick Contact Form Handler ---
+  // --- 8. Form Character Counter & Interactive Submission ---
   const quickContactForm = document.getElementById("quickContactForm");
+  const senderMessage = document.getElementById("senderMessage");
+  const charCounter = document.getElementById("charCounter");
+  const submitBtn = document.getElementById("submitBtn");
+
+  if (senderMessage && charCounter) {
+    const maxLength = parseInt(senderMessage.getAttribute("maxlength") || "500", 10);
+
+    senderMessage.addEventListener("input", () => {
+      const currentLength = senderMessage.value.length;
+      charCounter.textContent = `${currentLength} / ${maxLength}`;
+
+      if (currentLength >= maxLength * 0.95) {
+        charCounter.className = "char-counter limit-reached";
+      } else if (currentLength >= maxLength * 0.8) {
+        charCounter.className = "char-counter limit-near";
+      } else {
+        charCounter.className = "char-counter";
+      }
+    });
+  }
 
   if (quickContactForm) {
     quickContactForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const senderName = document.getElementById("senderName")?.value || "Friend";
-      const senderEmail = document.getElementById("senderEmail")?.value || "";
-      const senderMessage = document.getElementById("senderMessage")?.value || "";
+      const senderName = document.getElementById("senderName")?.value.trim() || "Friend";
+      const senderEmail = document.getElementById("senderEmail")?.value.trim() || "";
+      const senderMessageVal = document.getElementById("senderMessage")?.value.trim() || "";
 
-      if (!senderEmail || !senderMessage) {
+      if (!senderEmail || !senderMessageVal) {
         showToast("Please fill out all fields.", "fa-solid fa-circle-exclamation");
         return;
       }
 
-      // Construct mailto link for direct sending
-      const mailtoUrl = `mailto:haribhambhani24@gmail.com?subject=Inquiry from ${encodeURIComponent(senderName)}&body=${encodeURIComponent(`From: ${senderName} (${senderEmail})\n\n${senderMessage}`)}`;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Opening email client...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
+      }
+
+      const mailtoUrl = `mailto:haribhambhani24@gmail.com?subject=Inquiry from ${encodeURIComponent(senderName)}&body=${encodeURIComponent(`From: ${senderName} (${senderEmail})\n\n${senderMessageVal}`)}`;
 
       showToast(`Thank you, ${senderName}! Opening your email client...`);
 
       setTimeout(() => {
         window.location.href = mailtoUrl;
         quickContactForm.reset();
-      }, 800);
+        if (charCounter) charCounter.textContent = "0 / 500";
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>Send Message</span> <i class="fa-solid fa-paper-plane"></i>`;
+        }
+      }, 700);
     });
   }
 });

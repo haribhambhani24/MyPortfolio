@@ -33,6 +33,12 @@
 </head>
 <body>
 
+  <!-- Skip to Main Content Link for Keyboard Accessibility -->
+  <a href="#about" class="skip-link">Skip to main content</a>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
@@ -75,7 +81,7 @@
       <div class="hero-container">
         <div class="profile-frame" aria-label="Hari Bhambhani profile photo">
           <div class="profile-aura" aria-hidden="true"></div>
-          <img src="src/Formal_pic.png" alt="Portrait of Hari Bhambhani" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+          <img src="src/Formal_pic.png" alt="Portrait of Hari Bhambhani" width="360" height="360" fetchpriority="high" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
           <span class="profile-fallback" aria-hidden="true">HB</span>
           <div class="status-indicator-pill" title="Open to internship and learning opportunities">
             <span class="pulse-dot"></span> Open to Internships & Learning
@@ -253,11 +259,11 @@
             <span class="card-tag">Certificate of Achievement</span>
           </div>
 
-          <a href="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" target="_blank" rel="noopener noreferrer" class="cert-preview" title="Click to view full certificate">
-            <img src="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" alt="Hack-AI-Thon 4.0 Certificate of Achievement" loading="lazy" />
+          <a href="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" target="_blank" rel="noopener noreferrer" class="cert-preview cert-modal-trigger" data-cert-src="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" data-cert-title="Hack-AI-Thon 4.0" data-cert-issuer="AI-CoLegion, Dept. of AI &amp; DS, VESIT" aria-haspopup="dialog" title="Click to view full certificate">
+            <img src="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" alt="Hack-AI-Thon 4.0 Certificate of Achievement" width="600" height="412" loading="lazy" decoding="async" />
             <div class="cert-preview-overlay">
               <i class="fa-solid fa-magnifying-glass-plus"></i>
-              <span>View Full Certificate</span>
+              <span>Quick Preview</span>
             </div>
           </a>
 
@@ -272,8 +278,8 @@
           </div>
 
           <div class="card-actions">
-            <a href="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" target="_blank" rel="noopener noreferrer" class="card-link primary" aria-label="View Hack-AI-Thon 4.0 Certificate">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate
+            <a href="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" target="_blank" rel="noopener noreferrer" class="card-link primary cert-modal-trigger" data-cert-src="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" data-cert-title="Hack-AI-Thon 4.0" data-cert-issuer="AI-CoLegion, Dept. of AI &amp; DS, VESIT" aria-haspopup="dialog" aria-label="View Hack-AI-Thon 4.0 Certificate">
+              <i class="fa-solid fa-expand"></i> View Certificate
             </a>
           </div>
         </article>
@@ -285,11 +291,11 @@
             <span class="card-tag">Certificate of Participation</span>
           </div>
 
-          <a href="src/SYRUS-CodeCell%20VESIT%20Certificate.png" target="_blank" rel="noopener noreferrer" class="cert-preview" title="Click to view full certificate">
-            <img src="src/SYRUS-CodeCell%20VESIT%20Certificate.png" alt="SYRUS Hackathon (MARCH 2026) Certificate of Participation" loading="lazy" />
+          <a href="src/SYRUS-CodeCell%20VESIT%20Certificate.png" target="_blank" rel="noopener noreferrer" class="cert-preview cert-modal-trigger" data-cert-src="src/SYRUS-CodeCell%20VESIT%20Certificate.png" data-cert-title="SYRUS Hackathon (MARCH 2026)" data-cert-issuer="CodeCell++, Dept. of CMPN, VESIT" aria-haspopup="dialog" title="Click to view full certificate">
+            <img src="src/SYRUS-CodeCell%20VESIT%20Certificate.png" alt="SYRUS Hackathon (MARCH 2026) Certificate of Participation" width="600" height="412" loading="lazy" decoding="async" />
             <div class="cert-preview-overlay">
               <i class="fa-solid fa-magnifying-glass-plus"></i>
-              <span>View Full Certificate</span>
+              <span>Quick Preview</span>
             </div>
           </a>
 
@@ -304,8 +310,8 @@
           </div>
 
           <div class="card-actions">
-            <a href="src/SYRUS-CodeCell%20VESIT%20Certificate.png" target="_blank" rel="noopener noreferrer" class="card-link primary" aria-label="View SYRUS Hackathon Certificate">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate
+            <a href="src/SYRUS-CodeCell%20VESIT%20Certificate.png" target="_blank" rel="noopener noreferrer" class="card-link primary cert-modal-trigger" data-cert-src="src/SYRUS-CodeCell%20VESIT%20Certificate.png" data-cert-title="SYRUS Hackathon (MARCH 2026)" data-cert-issuer="CodeCell++, Dept. of CMPN, VESIT" aria-haspopup="dialog" aria-label="View SYRUS Hackathon Certificate">
+              <i class="fa-solid fa-expand"></i> View Certificate
             </a>
           </div>
         </article>
@@ -390,10 +396,13 @@
             </div>
           </div>
           <div class="input-group">
-            <label for="senderMessage">Message</label>
-            <textarea id="senderMessage" name="message" rows="4" placeholder="Hi Hari, I'd love to discuss..." required></textarea>
+            <div class="label-row">
+              <label for="senderMessage">Message</label>
+              <span class="char-counter" id="charCounter">0 / 500</span>
+            </div>
+            <textarea id="senderMessage" name="message" rows="4" maxlength="500" placeholder="Hi Hari, I'd love to discuss..." required></textarea>
           </div>
-          <button type="submit" class="btn primary-btn submit-btn">
+          <button type="submit" class="btn primary-btn submit-btn" id="submitBtn">
             <span>Send Message</span>
             <i class="fa-solid fa-paper-plane"></i>
           </button>
@@ -414,6 +423,36 @@
   <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll back to top of page">
     <i class="fa-solid fa-chevron-up"></i>
   </button>
+
+  <!-- Certificate Lightbox Modal Dialog (Accessible native HTML5 dialog) -->
+  <dialog id="certModal" class="cert-modal" closedby="any" aria-labelledby="certModalTitle" aria-modal="true">
+    <div class="cert-modal-box">
+      <div class="cert-modal-header">
+        <div class="cert-modal-info">
+          <span class="cert-modal-tag"><i class="fa-solid fa-award"></i> Verified Credential</span>
+          <h3 id="certModalTitle">Certificate Preview</h3>
+          <p id="certModalIssuer" class="cert-modal-issuer"></p>
+        </div>
+        <button type="button" class="cert-modal-close" id="certModalClose" aria-label="Close dialog" title="Close (Esc)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="cert-modal-body">
+        <img id="certModalImg" src="" alt="Full view of certificate" />
+      </div>
+
+      <div class="cert-modal-footer">
+        <span class="cert-modal-tip"><i class="fa-regular fa-keyboard"></i> Press <kbd>ESC</kbd> or click backdrop to close</span>
+        <div class="cert-modal-actions">
+          <a id="certModalOpenNewTab" href="#" target="_blank" rel="noopener noreferrer" class="btn secondary-btn cert-modal-btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>Open Original Image</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
   <script src="script.js"></script>
 </body>

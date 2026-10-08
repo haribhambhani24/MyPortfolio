@@ -56,6 +56,60 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* --- Keyboard Accessibility & Focus Rings --- */
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: -80px;
+  left: 20px;
+  background: var(--bg-surface);
+  color: var(--accent-2);
+  padding: 0.65rem 1.3rem;
+  border: 1px solid var(--accent-2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 3000;
+  transition: top 0.25s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.25);
+}
+
+.skip-link:focus-visible {
+  top: 16px;
+}
+
+/* --- Scroll Progress Bar --- */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 2000;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: scroll())) {
+    @keyframes grow-scroll-progress {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    .scroll-progress-bar {
+      animation: grow-scroll-progress auto linear;
+      animation-timeline: scroll();
+    }
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 9px;
@@ -1041,19 +1095,30 @@ body {
 
 .copy-btn {
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 0.7rem;
+  padding: 0.65rem;
   margin-right: 0.4rem;
   border-radius: 8px;
   font-size: 1rem;
-  transition: color 0.2s ease, background 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .copy-btn:hover {
   color: var(--accent-1);
   background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.copy-btn.copied {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: scale(1.08);
 }
 
 /* Quick Interactive Contact Form */
@@ -1086,10 +1151,31 @@ body {
   margin-bottom: 1rem;
 }
 
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .input-group label {
   font-size: 0.8rem;
   color: var(--text-muted);
   font-weight: 500;
+}
+
+.char-counter {
+  font-size: 0.72rem;
+  font-family: var(--font-code);
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+
+.char-counter.limit-near {
+  color: #fbbf24;
+}
+
+.char-counter.limit-reached {
+  color: #f87171;
 }
 
 .input-group input,
@@ -1101,7 +1187,7 @@ body {
   color: var(--text-main);
   font-family: var(--font-main);
   font-size: 0.9rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .input-group input:focus,
@@ -1110,6 +1196,12 @@ body {
   border-color: var(--accent-2);
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
   background: rgba(255, 255, 255, 0.07);
+}
+
+.input-group input:user-invalid,
+.input-group textarea:user-invalid {
+  border-color: rgba(248, 113, 113, 0.5);
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.12);
 }
 
 .submit-btn {
@@ -1232,6 +1324,190 @@ footer {
   color: var(--text-dim);
 }
 
+/* --- Certificate Lightbox Modal Dialog --- */
+dialog.cert-modal {
+  margin: auto;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  background: rgba(15, 22, 38, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: var(--text-main);
+  max-width: min(92vw, 860px);
+  max-height: 90vh;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.15);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), overlay 0.3s allow-discrete, display 0.3s allow-discrete;
+}
+
+dialog.cert-modal[open] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@starting-style {
+  dialog.cert-modal[open] {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+dialog.cert-modal::backdrop {
+  background: rgba(4, 7, 13, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease, overlay 0.3s allow-discrete, display 0.3s allow-discrete;
+}
+
+dialog.cert-modal[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  dialog.cert-modal[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.cert-modal-box {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.cert-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.2rem 1.6rem;
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+}
+
+.cert-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cert-modal-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cert-modal-header h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+}
+
+.cert-modal-issuer {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  font-family: var(--font-code);
+}
+
+.cert-modal-close {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cert-modal-close:hover {
+  color: #fff;
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  transform: rotate(90deg);
+}
+
+.cert-modal-body {
+  padding: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  overflow-y: auto;
+  max-height: calc(90vh - 160px);
+}
+
+.cert-modal-body img {
+  max-width: 100%;
+  max-height: 58vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cert-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.6rem;
+  border-top: 1px solid var(--border);
+  background: rgba(9, 13, 22, 0.9);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cert-modal-tip {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cert-modal-tip kbd {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.72rem;
+  font-family: var(--font-code);
+  color: var(--text-main);
+}
+
+.cert-modal-btn {
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+}
+
+/* --- Reduced Motion Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* --- Responsive Breakpoints --- */
 @media (max-width: 960px) {
   .hero-container {
@@ -1285,6 +1561,26 @@ footer {
   .contact-links {
     grid-template-columns: 1fr;
   }
+
+  .cert-modal-header {
+    padding: 1rem 1.2rem;
+  }
+
+  .cert-modal-body {
+    padding: 0.8rem;
+  }
+
+  .cert-modal-footer {
+    padding: 0.8rem 1.2rem;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .cert-modal-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1303,5 +1599,9 @@ footer {
 
   .stat-number {
     font-size: 1.3rem;
+  }
+
+  .cert-modal-header h3 {
+    font-size: 1.05rem;
   }
 }
