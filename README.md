@@ -33,7 +33,7 @@ A fast, responsive, and accessible personal portfolio website built with modern 
   - **Core Fundamentals**: Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA), Database Management (DBMS).
   - **Programming Languages**: Java (Core & OOP), SQL (Relational Queries).
   - **Web Basics**: HTML5, CSS3 & Flexbox.
-  - **Developer Tools**: Git, GitHub, VS Code, Chrome DevTools.
+  - **Developer Tools**: Git, GitHub, VS Code, Chrome DevTools, Antigravity IDE.
 
 - **Certifications & Hackathons (with In-Page Lightbox Modal)**:
   - *Hack-AI-Thon 4.0* (Certificate of Achievement, AI-CoLegion VESIT).
