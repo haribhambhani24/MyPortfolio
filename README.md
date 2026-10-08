@@ -25,7 +25,7 @@ A responsive personal portfolio website created with clean HTML5, CSS3, and Java
 - **Technical Skills**: Structured categories covering Core Fundamentals (OOP, DSA, DBMS), Programming Languages, Web Basics, and Developer Tools.
 - **Certifications & Hackathons**: High-resolution certificate previews and direct full-view links for:
   - *Hack-AI-Thon 4.0* (Certificate of Achievement, AI-CoLegion VESIT)
-  - *SYRUS Hackathon 2026* (Certificate of Participation, CodeCell++ VESIT)
+  - *SYRUS Hackathon (MARCH 2026)* (Certificate of Participation, CodeCell++ VESIT)
 - **Quick Connect**: Interactive copy-to-clipboard actions for phone/email and a direct `mailto:` contact form.
 
 ---
