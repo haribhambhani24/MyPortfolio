@@ -2,16 +2,18 @@
 
 <div align="center">
 
-![Portfolio Banner](https://img.shields.io/badge/VESIT-BTech%20'29-00ff66?style=for-the-badge&logo=codeforces&logoColor=07080a)
-![Tech Stack](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JavaScript-00ff66?style=for-the-badge&logo=javascript&logoColor=07080a)
-![Aesthetic](https://img.shields.io/badge/Theme-Executive%20Cyber%20Dark-07080a?style=for-the-badge&logo=visualstudiocode&logoColor=00ff66)
-![License](https://img.shields.io/badge/License-MIT-00ff66?style=for-the-badge)
+<p>
+  <a href="https://haribhambhani24.github.io/MyPortfolio/"><img src="https://img.shields.io/badge/Live_Site-Online-10b981?style=flat&logo=googlechrome&logoColor=white&labelColor=0d1117" alt="Live Site" /></a>
+  <img src="https://img.shields.io/badge/VESIT-BTech_'29-10b981?style=flat&labelColor=0d1117" alt="VESIT BTech '29" />
+  <img src="https://img.shields.io/badge/Stack-HTML5_•_CSS3_•_JS-10b981?style=flat&labelColor=0d1117" alt="Stack" />
+  <img src="https://img.shields.io/badge/License-MIT-10b981?style=flat&labelColor=0d1117" alt="License" />
+</p>
 
-<br/>
+**A fast, accessible, and responsive personal portfolio built with Vanilla web technologies, showcasing engineering coursework, technical projects, hackathon achievements, and core fundamentals in Java, DSA, and DBMS.**
 
-**A fast, accessible, and visually stunning personal portfolio showcasing engineering coursework, technical projects, hackathon achievements, and core fundamentals in Java, DSA, and DBMS.**
+<br />
 
-[🌐 Explore Live Portfolio](https://haribhambhani24.github.io/MyPortfolio/) &nbsp;&bull;&nbsp; [📄 View Resume (PDF)](https://haribhambhani24.github.io/MyPortfolio/src/Hari_Bhambhani_Resume.pdf)
+[🌐 **Explore Live Portfolio**](https://haribhambhani24.github.io/MyPortfolio/) &nbsp;&bull;&nbsp; [📄 **View Resume (PDF)**](https://haribhambhani24.github.io/MyPortfolio/src/Hari_Bhambhani_Resume.pdf) &nbsp;&bull;&nbsp; [📬 **Get in Touch**](mailto:haribhambhani24@gmail.com)
 
 </div>
 
