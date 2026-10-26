@@ -1,89 +1,135 @@
-# Hari Bhambhani - Personal Portfolio
+# Hari Bhambhani &mdash; Personal Portfolio
 
-A fast, responsive, and accessible personal portfolio website built with modern HTML5, CSS3, and JavaScript. Designed to showcase my engineering coursework (Java, Data Structures & Algorithms, DBMS & SQL), coursework projects, hackathon achievements, and background as a 2nd-year Computer Engineering undergraduate at VESIT, Mumbai.
+<div align="center">
+
+![Portfolio Banner](https://img.shields.io/badge/VESIT-BTech%20'29-00ff66?style=for-the-badge&logo=codeforces&logoColor=07080a)
+![Tech Stack](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JavaScript-00ff66?style=for-the-badge&logo=javascript&logoColor=07080a)
+![Aesthetic](https://img.shields.io/badge/Theme-Executive%20Cyber%20Dark-07080a?style=for-the-badge&logo=visualstudiocode&logoColor=00ff66)
+![License](https://img.shields.io/badge/License-MIT-00ff66?style=for-the-badge)
+
+<br/>
+
+**A fast, accessible, and visually stunning personal portfolio showcasing engineering coursework, technical projects, hackathon achievements, and core fundamentals in Java, DSA, and DBMS.**
+
+[🌐 Explore Live Portfolio](https://haribhambhani24.github.io/MyPortfolio/) &nbsp;&bull;&nbsp; [📄 View Resume (PDF)](https://haribhambhani24.github.io/MyPortfolio/src/Hari_Bhambhani_Resume.pdf)
+
+</div>
 
 ---
 
-## 🌟 Live Demo
-👉 **[View Portfolio](https://haribhambhani24.github.io/MyPortfolio/)**
+## 👨‍💻 About Hari
+
+I am a **BTech Computer Engineering undergraduate** at **VESIT, Mumbai** (Class of 2029). My primary technical focus is on **Core Java & Object-Oriented Design**, **Data Structures & Algorithms**, and **Relational Database Management (DBMS & SQL)**. 
+
+This portfolio is hand-crafted with Vanilla web technologies to reflect an executive dark cyberpunk aesthetic &mdash; featuring high-performance physics-based smooth scrolling, specular luster borders, ambient blueprint grid geometry, and fully accessible native dialog components.
 
 ---
 
-## 💻 Tech Stack & Standards
-- **Markup**: Semantic HTML5 with accessibility best practices (ARIA roles, keyboard skip links, native `<dialog>`)
-- **Styling**: Vanilla CSS3 (Custom properties / theme tokens, Flexbox, CSS Grid, scroll-driven animations, backdrop blur)
-- **Logic**: Modern Vanilla JavaScript (IntersectionObserver, Dialog API, throttled requestAnimationFrame, Clipboard API)
-- **Typography & Icons**: Google Fonts (*Inter*, *Fira Code*), FontAwesome 6.5
-- **Performance**: Zero external JavaScript frameworks, LCP image priority hints, zero Cumulative Layout Shift (CLS)
+## ✨ Design & Architectural Highlights
+
+- **Obsidian & Electric Neon Aesthetic**: Tailored `#07080a` bright black canvas with `#00ff66` neon green accents and frosted glassmorphism (`backdrop-filter: blur(16px)`).
+- **Cybernetic Blueprint Grid**: Dual-frequency mathematical background grid (48px major grid, 24px minor subdivision) overlaid with illuminated vertex dots and ambient radial spotlights.
+- **Specular Luster Borders**: Multi-layered card borders with dynamic sheen reflection and breathing luster keyframe animations.
+- **Physics-Based Momentum Scrolling**: Powered by **[Lenis](https://github.com/darkroomengineering/lenis)** for smooth navigation with native touch pass-through on mobile devices.
+- **Interactive Cursor Spotlight**: Real-time cursor coordinates tracking on cards for an ambient luminescent glow effect.
+- **Tactile Clipboard Interactions**: One-click copy for Phone and Email with immediate icon morphing, checkmark micro-animation, and floating toast notifications.
+- **Native Lightbox Modal Dialog**: Accessible HTML5 `<dialog>` with light-dismiss behavior (<kbd>ESC</kbd> key or backdrop click) for instant full-resolution certificate previews.
+- **Responsive Architecture**: Fluid layout with 3-column quick stats, adaptive Bento grids, collapsible hamburger navigation, and zero horizontal scroll on mobile viewports.
 
 ---
 
-## 🚀 Key Features & UX Highlights
+## 🛠️ Tech Stack & Standards
 
-- **Dynamic Hero Section**:
-  - Interactive typewriter effect cycling through core study domains (*OOP with Java*, *DSA*, *DBMS & SQL*).
-  - Respects user accessibility preferences (`prefers-reduced-motion`).
-  - Direct access to download/view resume (`Hari_Bhambhani_Resume.pdf`).
+| Category | Technologies & Tools |
+| :--- | :--- |
+| **Markup & Semantics** | HTML5, Semantic tags (`<dialog>`, `<nav>`, `<main>`, `<section>`, `<article>`), ARIA attributes |
+| **Styling & Layout** | Vanilla CSS3, CSS Grid, Flexbox, Custom Properties (CSS variables), Specular borders, Blueprint grid |
+| **Interactivity & Logic** | Modern Vanilla JavaScript (ES6+), Lenis.js, `IntersectionObserver`, Clipboard API, Dialog API |
+| **Typography** | [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) (Headings), [Outfit](https://fonts.google.com/specimen/Outfit) (Body), [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) (Accents/Code) |
+| **Icons & Media** | FontAwesome 6.5, Vector SVG Icons, Optimized Portable Document Format (PDF) |
+| **Accessibility (a11y)** | Keyboard skip links, visible focus rings (`:focus-visible`), `prefers-reduced-motion` compliance |
 
-- **Academic & Personal Projects**:
-  - *Personal Portfolio Website*: Built with HTML5, CSS3, and JavaScript.
-  - *Attendance Tracker*: Upcoming coursework project automating attendance records and threshold alerts using Java and SQL.
+---
 
-- **Technical Skills**:
-  - **Core Fundamentals**: Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA), Database Management (DBMS).
-  - **Programming Languages**: Java (Core & OOP), SQL (Relational Queries).
-  - **Web Basics**: HTML5, CSS3 & Flexbox.
-  - **Developer Tools**: Git, GitHub, VS Code, Chrome DevTools, Antigravity IDE.
+## 📂 Bento Grid Technical Skillset
 
-- **Certifications & Hackathons (with In-Page Lightbox Modal)**:
-  - *Hack-AI-Thon 4.0* (Certificate of Achievement, AI-CoLegion VESIT).
-  - *SYRUS Hackathon (MARCH 2026)* (Certificate of Participation, CodeCell++ VESIT).
-  - **Native Lightbox Modal (`<dialog>`)**: Clicking any certificate opens an in-page preview with verified credentials, light-dismiss (clicking outside or pressing <kbd>Esc</kbd>), and direct link to view full-resolution files.
+```
+┌─────────────────────────────────┬─────────────────────────────────┐
+│ 01. PROGRAMMING LANGUAGES       │ 02. COMPUTER SCIENCE CORE       │
+│ • Java (Core & OOP)             │ • Object-Oriented Programming   │
+│ • SQL (Relational Queries)      │ • Data Structures & Algorithms  │
+│                                 │ • Database Management (DBMS)    │
+├─────────────────────────────────┴─────────────────────────────────┤
+│ 03. APPLIED FOCUS & PROBLEM SOLVING                               │
+│ • DSA Drills & LeetCode         │ • Java Object Design            │
+└───────────────────────────────────────────────────────────────────┘
+```
 
-- **Interactive Quick Connect**:
-  - **Tactile Copy Feedback**: One-click copy for Phone and Email with immediate icon morphing (emerald checkmark), tooltip confirmation, and floating toast notifications.
-  - **Contact Form**: Direct `mailto:` message builder with live character counter (`0 / 500`) and field validation.
+---
 
-- **Smooth Navigation & UX Polish**:
-  - **Reading Scroll Progress Bar**: A sleek top gradient indicator driven by scroll timeline.
-  - **Accessible Keyboard Navigation**: "Skip to main content" link and distinct `:focus-visible` focus rings.
-  - **Floating Scroll-To-Top**: Smooth scrolling return button when navigating long pages.
+## 🏆 Hackathons & Credentials
+
+- **Hack-AI-Thon 4.0** &mdash; *Certificate of Achievement*  
+  Organized by **AI-CoLegion**, VESIT.
+- **SYRUS Hackathon (MARCH 2026)** &mdash; *Certificate of Participation*  
+  Organized by **CodeCell++**, VESIT.
+
+*(All credentials can be inspected interactively in the high-resolution lightbox modal).*
 
 ---
 
 ## 📁 Repository Structure
+
 ```
 MyPortfolio/
-├── .gitignore                                  # Git ignore rules for OS & editor artifacts
-├── README.md                                   # Project documentation & overview
-├── index.html                                  # Semantic HTML5 document & modal dialog
-├── script.js                                   # Interactions, modal handling & UX logic
-├── style.css                                   # Design system tokens, animations & responsive styling
+├── .gitignore                          # Exclusions for OS, IDEs, logs, and build artifacts
+├── README.md                           # Comprehensive documentation & project overview
+├── index.html                          # Semantic HTML5 structure, Bento grid & modal dialog
+├── script.js                           # Lenis smooth scrolling, modal dialog & interactive UX
+├── style.css                           # Cyberpunk design system, blueprint grid & animations
 └── src/
-    ├── Formal_pic.png                          # Profile photo
-    ├── Hari_Bhambhani_Resume.pdf               # Resume document
-    ├── Hack-AI-Thon 4.0 (AI-CoLegion) Certificate.png   # Certificate image
-    └── SYRUS-CodeCell VESIT Certificate.png    # Certificate image
+    ├── Formal_pic.png                  # Profile headshot
+    ├── Hari_Bhambhani_Resume.pdf       # Verified, up-to-date resume document (PDF)
+    ├── Hack-AI-Thon 4.0 Certificate.png# Credential preview asset
+    └── SYRUS-CodeCell Certificate.png  # Credential preview asset
 ```
 
 ---
 
-## 🛠️ Local Development
-To run this project locally:
+## 🚀 Getting Started Locally
 
-1. Clone or download this repository:
-   ```bash
-   git clone https://github.com/haribhambhani24/MyPortfolio.git
-   ```
-2. Navigate into the project directory:
-   ```bash
-   cd MyPortfolio
-   ```
-3. Open `index.html` in your favorite web browser, or launch using VS Code's **Live Server** extension.
+To run and preview the portfolio on your local machine:
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/haribhambhani24/MyPortfolio.git
+cd MyPortfolio
+```
+
+### 2. Launch a local web server
+You can use Python's built-in HTTP server or VS Code's Live Server:
+
+**Using Python (Quickest)**:
+```bash
+python -m http.server 3000
+```
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
+
+**Using VS Code Live Server**:
+1. Open the folder in VS Code.
+2. Click **Go Live** on the bottom status bar.
 
 ---
 
-## 📬 Contact
+## 📬 Contact & Connect
+
 - **Email**: [haribhambhani24@gmail.com](mailto:haribhambhani24@gmail.com)
-- **LinkedIn**: [in/hari-bhambhani](https://www.linkedin.com/in/hari-bhambhani)
-- **GitHub**: [@haribhambhani24](https://github.com/haribhambhani24)
+- **LinkedIn**: [linkedin.com/in/hari-bhambhani](https://www.linkedin.com/in/hari-bhambhani)
+- **GitHub**: [github.com/haribhambhani24](https://github.com/haribhambhani24)
+- **Location**: VESIT, Chembur, Mumbai, Maharashtra, India
+
+---
+
+<div align="center">
+  <sub>Designed & Developed by Hari Bhambhani &copy; 2026. All rights reserved.</sub>
+</div>

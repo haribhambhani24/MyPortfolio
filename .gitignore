@@ -1,13 +1,48 @@
 # Operating System Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
 desktop.ini
+$RECYCLE.BIN/
 
 # Editor & IDE configurations
 .vscode/
 .idea/
 *.swp
 *.swo
+*.swn
+*.bak
+*.tmp
+*~
+*.sublime-project
+*.sublime-workspace
 
-# Temporary & Log files
+# Antigravity & AI Agent Artifacts
+.agents/
+.gemini/
+
+# Environment Variables & Local Secrets
+.env
+.env.local
+.env.*.local
+
+# Package Managers & Build Outputs (for future toolchains)
+node_modules/
+dist/
+build/
+out/
+.cache/
+.parcel-cache/
+
+# Logs & Diagnostics
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
