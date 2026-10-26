@@ -7,9 +7,9 @@
   
   <!-- SEO Meta Tags -->
   <meta name="description" content="Personal portfolio of Hari Bhambhani - 2nd Year Computer Engineering student at VESIT, Mumbai. Exploring Core Java, DSA, DBMS & SQL, and Web Basics." />
-  <meta name="keywords" content="Hari Bhambhani, Computer Engineering, Student Portfolio, VESIT, Java, DSA, DBMS, SQL, HTML, CSS" />
+  <meta name="keywords" content="Hari Bhambhani, Computer Engineering, Student Portfolio, VESIT, Java, DSA, DBMS, SQL, HTML, CSS, Minimal Dark Portfolio" />
   <meta name="author" content="Hari Bhambhani" />
-  <meta name="theme-color" content="#0a0e17" />
+  <meta name="theme-color" content="#090a0d" />
 
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website" />
@@ -21,17 +21,101 @@
   <meta name="twitter:description" content="2nd Year Computer Engineering student at VESIT, Mumbai. Exploring Java, DSA, DBMS & SQL, and Web Basics." />
   <meta name="twitter:image" content="src/Formal_pic.png" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+  <!-- Favicon: Hexagonal 'H' Logo in Electric Neon Green -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 115'%3E%3Cpolygon points='50,4 95,30 95,84 50,110 5,84 5,30' fill='%2307080a' stroke='%2300ff66' stroke-width='8'/%3E%3Ctext x='50' y='73' font-family='monospace, sans-serif' font-size='56' font-weight='900' fill='%2300ff66' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 115'%3E%3Cpolygon points='50,4 95,30 95,84 50,110 5,84 5,30' fill='%2307080a' stroke='%2300ff66' stroke-width='8'/%3E%3Ctext x='50' y='73' font-family='monospace, sans-serif' font-size='56' font-weight='900' fill='%2300ff66' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E" />
+
+  <!-- Cache Control to ensure instant local updates -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
 
   <!-- Stylesheets & Fonts -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css" />
+  <link rel="stylesheet" href="style.css?v=neon-v29" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
-<body>
+<body class="loading">
+
+  <!-- Entry Splash Screen with Animated Hexagonal 'H' Logo (Inspired by reference) -->
+  <div id="splashScreen" class="splash-screen" aria-hidden="true">
+    <div class="splash-content">
+      <div class="splash-logo-box">
+        <svg class="splash-hex-svg" viewBox="0 0 100 115" width="90" height="104">
+          <polygon class="splash-hex-base" points="50,3 96,29 96,83 50,109 4,83 4,29"></polygon>
+          <polygon class="splash-hex-draw" points="50,3 96,29 96,83 50,109 4,83 4,29"></polygon>
+          <text x="50" y="56" class="splash-hex-letter" text-anchor="middle" dominant-baseline="central">H</text>
+        </svg>
+      </div>
+      <div class="splash-progress-track">
+        <div class="splash-progress-bar"></div>
+      </div>
+      <span class="splash-tag">// INITIALIZING ENVIRONMENT</span>
+    </div>
+  </div>
+
+  <!-- Immediate Splash Dismissal Controller (Ensures 2.3s timing regardless of load states) -->
+  <script>
+    (function() {
+      var dismissed = false;
+      function hideSplashScreen() {
+        if (dismissed) return;
+        dismissed = true;
+        var s = document.getElementById("splashScreen");
+        if (s) {
+          s.classList.add("fade-out");
+          document.body.classList.remove("loading");
+          setTimeout(function() { s.style.display = "none"; }, 650);
+        } else {
+          document.body.classList.remove("loading");
+        }
+      }
+      // Reveal page automatically after 2.3 seconds
+      setTimeout(hideSplashScreen, 2300);
+      // Optional: tap/click anywhere to skip immediately
+      var splashEl = document.getElementById("splashScreen");
+      if (splashEl) splashEl.addEventListener("click", hideSplashScreen);
+    })();
+  </script>
+
+  <!-- Floating Left Social Rail (Inspired by reference) -->
+  <aside class="floating-social-rail" aria-label="Social links rail">
+    <ul class="social-rail-list">
+      <li><a href="https://github.com/haribhambhani24" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" title="GitHub"><i class="fa-brands fa-github"></i></a></li>
+      <li><a href="https://www.linkedin.com/in/hari-bhambhani" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+      <li><a href="mailto:haribhambhani24@gmail.com" aria-label="Send Email" title="Email"><i class="fa-solid fa-envelope"></i></a></li>
+      <li><a href="tel:+919320474520" aria-label="Call Phone" title="Phone"><i class="fa-solid fa-phone"></i></a></li>
+    </ul>
+    <div class="social-rail-line" aria-hidden="true"></div>
+  </aside>
+
+  <!-- Architectural Viewport Borders & System Corner Markers -->
+  <div class="viewport-frame" aria-hidden="true">
+    <div class="frame-line frame-line-top"></div>
+    <div class="frame-line frame-line-bottom"></div>
+    <div class="frame-line frame-line-left"></div>
+    <div class="frame-line frame-line-right"></div>
+    
+    <div class="frame-corner frame-corner-tl">
+      <span class="corner-cross">+</span>
+      <span class="corner-meta">HB // 2026</span>
+    </div>
+    <div class="frame-corner frame-corner-tr">
+      <span class="corner-meta">SYS: LIVE</span>
+      <span class="corner-cross">+</span>
+    </div>
+    <div class="frame-corner frame-corner-bl">
+      <span class="corner-cross">+</span>
+      <span class="corner-meta">VESIT &middot; MUMBAI</span>
+    </div>
+    <div class="frame-corner frame-corner-br">
+      <span class="corner-meta">PORTFOLIO</span>
+      <span class="corner-cross">+</span>
+    </div>
+  </div>
 
   <!-- Skip to Main Content Link for Keyboard Accessibility -->
   <a href="#about" class="skip-link">Skip to main content</a>
@@ -42,200 +126,325 @@
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar" id="navbar">
-    <a href="#about" class="logo" aria-label="Hari Bhambhani Home">
-      <span class="logo-accent">⚡</span> Hari<span class="gradient-text">Bhambhani</span>
-    </a>
+  <!-- Master Architectural Page Frame Wrapper -->
+  <div class="page-architectural-wrapper">
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about" class="nav-link active">About</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#certifications" class="nav-link">Certifications</a></li>
-      <li><a href="#contact" class="nav-link nav-btn">Contact</a></li>
-    </ul>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+      <a href="#about" class="logo" aria-label="Hari Bhambhani Home">
+        <span class="logo-hex-mark" aria-hidden="true">
+          <svg viewBox="0 0 100 115" width="25" height="28">
+            <polygon class="nav-hex-poly" points="50,3 96,29 96,83 50,109 4,83 4,29"></polygon>
+            <text x="50" y="56" class="nav-hex-letter" text-anchor="middle" dominant-baseline="central">H</text>
+          </svg>
+        </span>
+        <span class="logo-brand">Hari<span class="neon-text">Bhambhani</span></span>
+      </a>
 
-    <!-- Mobile Hamburger Toggle -->
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-  </nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link active">// about</a></li>
+        <li><a href="#projects" class="nav-link">// projects</a></li>
+        <li><a href="#skills" class="nav-link">// skills</a></li>
+        <li><a href="#certifications" class="nav-link">// certs</a></li>
+        <li><a href="#contact" class="nav-link nav-btn">// contact</a></li>
+      </ul>
 
-  <!-- Mobile Navigation Drawer Overlay -->
-  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
-    <ul class="mobile-nav-links">
-      <li><a href="#about" class="mobile-link">About</a></li>
-      <li><a href="#projects" class="mobile-link">Projects</a></li>
-      <li><a href="#skills" class="mobile-link">Skills</a></li>
-      <li><a href="#certifications" class="mobile-link">Certifications</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
-    </ul>
-  </div>
+      <!-- Mobile Hamburger Toggle -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
 
-  <main>
-    <!-- Hero Section -->
+    <!-- Mobile Navigation Drawer Overlay -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <ul class="mobile-nav-links">
+        <li><a href="#about" class="mobile-link">// about</a></li>
+        <li><a href="#projects" class="mobile-link">// projects</a></li>
+        <li><a href="#skills" class="mobile-link">// skills</a></li>
+        <li><a href="#certifications" class="mobile-link">// certs</a></li>
+        <li><a href="#contact" class="mobile-link">// contact</a></li>
+      </ul>
+    </div>
+
+    <main>
+    <!-- Hero Section with Developer HUD & Command Center Layout -->
     <header class="hero section" id="about">
       <div class="hero-container">
-        <div class="profile-frame" aria-label="Hari Bhambhani profile photo">
-          <div class="profile-aura" aria-hidden="true"></div>
-          <img src="src/Formal_pic.png" alt="Portrait of Hari Bhambhani" width="360" height="360" fetchpriority="high" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-          <span class="profile-fallback" aria-hidden="true">HB</span>
-          <div class="status-indicator-pill" title="Open to internship and learning opportunities">
-            <span class="pulse-dot"></span> Open to Internships & Learning
-          </div>
-        </div>
-
+        
+        <!-- Left: Hero Introduction & Actions -->
         <div class="hero-content reveal">
           <div class="badge">
-            <i class="fa-solid fa-graduation-cap"></i> 2nd Year Engineering Student
+            <i class="fa-solid fa-terminal"></i> 2nd Year Computer Engineering &middot; VESIT
           </div>
-          <h1>Hi, I'm <span class="gradient-text">Hari Bhambhani</span></h1>
-          <h2>Learning & Exploring <span class="typing" id="typingText"></span></h2>
+          <h1>Hi, I'm <span class="neon-text">Hari Bhambhani</span></h1>
+          <h2>
+            <span class="typing" id="typingText"></span>
+          </h2>
           <p class="hero-bio">
-            Computer Engineering undergraduate at VESIT, Mumbai. Focused on strengthening fundamentals in object-oriented programming with Java, relational database querying with SQL, and collaborative workflows via Git & GitHub. 
+            Undergraduate Computer Engineering student at VESIT, Mumbai. Dedicated to mastering object-oriented programming in Java, data structures &amp; algorithms, relational SQL querying, and engineering accessible web applications.
           </p>
 
           <div class="hero-buttons">
             <a href="#projects" class="btn primary-btn">
-              <span>Explore Projects</span>
+              <span>View Projects</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
             <a href="#contact" class="btn secondary-btn">
-              <span>Let's Connect</span>
+              <span>Contact Me</span>
             </a>
-            <a href="src/Hari_Bhambhani_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn outline-btn" id="resumeBtn">
-              <i class="fa-solid fa-file-lines"></i>
-              <span>Get Resume</span>
+            <a href="src/Hari_Bhambhani_Resume.pdf?v=20261026-v2" target="_blank" rel="noopener noreferrer" class="btn outline-btn" id="resumeBtn" title="View Hari Bhambhani Resume (PDF)">
+              <i class="fa-solid fa-file-arrow-down"></i>
+              <span>Resume.pdf</span>
             </a>
           </div>
 
-          
+
+          <!-- Comprehensive Stats Strip -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">VESIT'29</span>
+              <span class="stat-label">BTech CMPN Undergrad</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">Java</span>
+              <span class="stat-label">Core Focus</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">5+ Hackathons</span>
+              <span class="stat-label">Competitions</span>
+            </div>
+          </div>
         </div>
+
+        <!-- Right: Professional Portrait Showcase (Framed shape, clean & executive) -->
+        <div class="hero-profile-showcase reveal">
+          <div class="profile-frame-card">
+            <div class="profile-glow-halo" aria-hidden="true"></div>
+            
+            <div class="profile-frame-inner">
+              <div class="profile-corner pc-tl">+</div>
+              <div class="profile-corner pc-tr">+</div>
+              <div class="profile-corner pc-bl">+</div>
+              <div class="profile-corner pc-br">+</div>
+              
+              <div class="profile-img-wrap">
+                <img src="src/Formal_pic.png" alt="Hari Bhambhani - Computer Engineering Student" width="360" height="420" fetchpriority="high" decoding="async" class="profile-main-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="profile-fallback-box" aria-hidden="true">
+                  <span>HB</span>
+                </div>
+              </div>
+
+              <!-- Floating Live Status Badge -->
+              <div class="profile-status-float">
+                <span class="pulse-dot"></span>
+                <span>OPEN FOR INTERNSHIPS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll Down Indicator (Inspired by reference) -->
+      <div class="scroll-wrapper" id="scrollIndicator">
+        <a href="#projects" class="scroll-link" aria-label="Scroll to projects">
+          <span class="scroll-text">scroll</span>
+          <span class="scroll-arrow"><i class="fa-solid fa-arrow-down"></i></span>
+        </a>
       </div>
     </header>
 
-    <!-- Projects Section -->
+    <!-- Projects Section (3 Comprehensive Cards) -->
     <section class="section" id="projects">
       <div class="section-header reveal">
-        <span class="section-subtitle">Academic & Personal Work</span>
-        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-        <p class="section-description">Practical applications I've built while exploring programming languages and computer science concepts.</p>
+        <div class="section-title-line-wrap">
+          <span class="section-index-num">01.</span>
+          <h2 class="section-title">Academic &amp; <span class="neon-text">Coursework Projects</span></h2>
+          <div class="section-rule-line" aria-hidden="true"></div>
+        </div>
+        <p class="section-description">Practical applications and software projects built while studying computer science fundamentals.</p>
       </div>
 
       <div class="grid cards-grid">
         
         <!-- Project 1: Personal Portfolio -->
-        <article class="card reveal">
+        <article class="card reveal" data-card>
           <div class="card-top-bar">
-            <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
-            <span class="card-tag">Web (Learning)</span>
+            <span class="card-index">// 01 &middot; WEB APP</span>
+            <span class="card-tag card-tag-live"><i class="fa-solid fa-circle"></i> Live</span>
           </div>
           <h3>Personal Portfolio Website</h3>
-          <p>My first personal portfolio website created with HTML, CSS, and basic JavaScript to practice web fundamentals, page structuring, and showcase my learning journey.</p>
+          <p>A fast, accessible, minimalist portfolio designed with high-contrast bright black aesthetics, electric neon green accents, and smooth scroll micro-interactions.</p>
           
+          <ul class="card-features">
+            <li><i class="fa-solid fa-check"></i> Semantic HTML5 architecture &amp; native dialog lightbox</li>
+            <li><i class="fa-solid fa-check"></i> Scroll-driven progress timeline &amp; mouse-tracking spotlight</li>
+            <li><i class="fa-solid fa-check"></i> Zero framework dependencies, pure lightweight performance</li>
+          </ul>
+
           <div class="tags">
             <span><i class="fa-brands fa-html5"></i> HTML5</span>
-            <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-            <span><i class="fa-brands fa-js"></i> Basic JavaScript</span>
+            <span><i class="fa-brands fa-css3-alt"></i> Modern CSS</span>
+            <span><i class="fa-brands fa-js"></i> Vanilla JS</span>
           </div>
 
           <div class="card-actions">
             <a href="https://github.com/haribhambhani24/MyPortfolio" target="_blank" rel="noopener noreferrer" class="card-link" aria-label="View Portfolio source code on GitHub">
-              <i class="fa-brands fa-github"></i> Code
+              <i class="fa-brands fa-github"></i> Source Code
             </a>
             <a href="#about" class="card-link primary" aria-label="View Live Portfolio Demo">
-              <i class="fa-solid fa-bolt"></i> Live View
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
             </a>
           </div>
         </article>
 
         <!-- Project 2: Upcoming Coursework -->
-        <article class="card reveal">
+        <article class="card reveal" data-card>
           <div class="card-top-bar">
-            <div class="card-icon"><i class="fa-solid fa-calendar-check"></i></div>
-            <span class="card-tag card-tag-upcoming"><i class="fa-solid fa-clock"></i> In Progress</span>
+            <span class="card-index">// 02 &middot; COURSEWORK</span>
+            <span class="card-tag card-tag-upcoming"><i class="fa-solid fa-spinner fa-spin-pulse"></i> In Progress</span>
           </div>
           <h3>Attendance Tracker</h3>
-          <p>Upcoming college coursework project aimed at automating student attendance records, tracking subject-wise attendance thresholds, and generating deficit alerts using Java and SQL.</p>
+          <p>College coursework software automating student attendance records, subject-wise threshold analytics, and deficit notifications using Java and relational SQL.</p>
           
+          <ul class="card-features">
+            <li><i class="fa-solid fa-check"></i> Relational database schema with attendance threshold formulas</li>
+            <li><i class="fa-solid fa-check"></i> Object-oriented student, subject, and record manager classes</li>
+            <li><i class="fa-solid fa-clock"></i> Automated attendance shortage alert calculation module</li>
+          </ul>
+
           <div class="tags">
-            <span><i class="fa-brands fa-java"></i> Java</span>
+            <span><i class="fa-brands fa-java"></i> Java Core</span>
             <span><i class="fa-solid fa-database"></i> SQL / DBMS</span>
-            <span><i class="fa-solid fa-cubes"></i> OOP Principles</span>
+            <span><i class="fa-solid fa-cubes"></i> OOP Design</span>
           </div>
 
           <div class="card-actions">
             <span class="status-pill-muted">
-              <i class="fa-solid fa-hammer"></i> Coming Soon
+              <i class="fa-solid fa-code-commit"></i> Coursework In Development
             </span>
           </div>
         </article>
 
+        <!-- Temporarily hidden: Project 3 (DSA Lab Practice Repository)
+        <article class="card reveal" data-card>
+          <div class="card-top-bar">
+            <span class="card-index">// 03 &middot; FOUNDATIONS</span>
+            <span class="card-tag"><i class="fa-solid fa-book-bookmark"></i> Lab Practice</span>
+          </div>
+          <h3>DSA &amp; Problem Solving Lab</h3>
+          <p>Hands-on engineering lab implementations of core data structures, recursive patterns, and algorithmic problem solving in Java.</p>
+          
+          <ul class="card-features">
+            <li><i class="fa-solid fa-check"></i> Linked Lists, Stacks, Queues, and Binary Search Trees</li>
+            <li><i class="fa-solid fa-check"></i> Sorting &amp; Searching algorithms with time/space complexity analysis</li>
+            <li><i class="fa-solid fa-check"></i> Ongoing coursework and algorithmic problem solving drills</li>
+          </ul>
+
+          <div class="tags">
+            <span><i class="fa-brands fa-java"></i> Java</span>
+            <span><i class="fa-solid fa-sitemap"></i> DSA</span>
+            <span><i class="fa-solid fa-brain"></i> Problem Solving</span>
+          </div>
+
+          <div class="card-actions">
+            <a href="https://github.com/haribhambhani24" target="_blank" rel="noopener noreferrer" class="card-link primary">
+              <i class="fa-brands fa-github"></i> Practice Work
+            </a>
+          </div>
+        </article>
+        -->
+
       </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section (Bento Grid Architecture) -->
     <section class="section" id="skills">
       <div class="section-header reveal">
-        <span class="section-subtitle">What I'm Learning</span>
-        <h2 class="section-title">Skills & <span class="gradient-text">Technologies</span></h2>
-        <p class="section-description">Core computer science topics, programming languages, and tools I study and practice regularly.</p>
+        <div class="section-title-line-wrap">
+          <span class="section-index-num">02.</span>
+          <h2 class="section-title">Skills &amp; <span class="neon-text">Technologies</span></h2>
+          <div class="section-rule-line" aria-hidden="true"></div>
+        </div>
+        <p class="section-description">Core computer science topics, programming languages, and engineering workflows practiced regularly.</p>
       </div>
 
-      <div class="skills-categories-grid">
+      <div class="bento-skills-grid">
         
-        <!-- Category 1: Programming Languages -->
-        <div class="skill-category-card reveal">
+        <!-- Bento 1: Programming Languages -->
+        <div class="skill-category-card bento-item reveal" data-card>
           <div class="category-header">
-            <div class="category-icon"><i class="fa-solid fa-code"></i></div>
+            <span class="category-index">01</span>
             <h3>Programming Languages</h3>
           </div>
+          <p class="bento-desc">Core languages used for coursework, object-oriented software design, and database interaction.</p>
           <div class="skills-wrapper">
-            <div class="skill-pill"><i class="fa-brands fa-java"></i> Java (Core & OOP)</div>
-            <div class="skill-pill"><i class="fa-solid fa-database"></i> SQL (Relational Queries)</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-brands fa-java"></i> Java (Core &amp; OOP)</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-solid fa-database"></i> SQL (Relational Queries)</div>
           </div>
         </div>
 
-        <!-- Category 2: Core Fundamentals -->
-        <div class="skill-category-card reveal">
+        <!-- Bento 2: Core CS Fundamentals -->
+        <div class="skill-category-card bento-item reveal" data-card>
           <div class="category-header">
-            <div class="category-icon"><i class="fa-solid fa-brain"></i></div>
-            <h3>Core Fundamentals</h3>
+            <span class="category-index">02</span>
+            <h3>Computer Science Core</h3>
           </div>
+          <p class="bento-desc">Fundamental engineering concepts underpinning efficient software development.</p>
           <div class="skills-wrapper">
-            <div class="skill-pill"><i class="fa-solid fa-cubes"></i> Object-Oriented Programming (OOP)</div>
-            <div class="skill-pill"><i class="fa-solid fa-sitemap"></i> Data Structures & Algorithms</div>
-            <div class="skill-pill"><i class="fa-solid fa-server"></i> Database Management (DBMS)</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-solid fa-cubes"></i> Object-Oriented Programming (OOP)</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-solid fa-sitemap"></i> Data Structures &amp; Algorithms</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-solid fa-server"></i> Database Management (DBMS)</div>
           </div>
         </div>
 
-        <!-- Category 3: Web Basics (Learning) -->
-        <div class="skill-category-card reveal">
+        <!-- Bento 3: Web Essentials -->
+        <div class="skill-category-card bento-item reveal" data-card>
           <div class="category-header">
-            <div class="category-icon"><i class="fa-solid fa-laptop-code"></i></div>
-            <h3>Web Basics <span class="badge-mini">Learning</span></h3>
+            <span class="category-index">03</span>
+            <h3>Web Foundations</h3>
           </div>
+          <p class="bento-desc">Practicing modern client-side standards, responsive layouts, and UI architecture.</p>
           <div class="skills-wrapper">
-            <div class="skill-pill"><i class="fa-brands fa-html5"></i> HTML5</div>
-            <div class="skill-pill"><i class="fa-brands fa-css3-alt"></i> CSS3 & Flexbox</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-brands fa-html5"></i> Semantic HTML5</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-brands fa-css3-alt"></i> CSS3 Flexbox &amp; Grid</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-brands fa-js"></i> JavaScript Basics</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-solid fa-mobile-screen"></i> Responsive UI Design</div>
           </div>
         </div>
 
-        <!-- Category 4: Tools & Workflow -->
-        <div class="skill-category-card reveal">
+        <!-- Bento 4: Developer Tools -->
+        <div class="skill-category-card bento-item reveal" data-card>
           <div class="category-header">
-            <div class="category-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-            <h3>Developer Tools</h3>
+            <span class="category-index">04</span>
+            <h3>Developer Environment</h3>
           </div>
+          <p class="bento-desc">Everyday tools for source control, coding, and debugging.</p>
           <div class="skills-wrapper">
-            <div class="skill-pill"><i class="fa-brands fa-git-alt"></i> Git Version Control</div>
-            <div class="skill-pill"><i class="fa-brands fa-github"></i> GitHub</div>
-            <div class="skill-pill"><i class="fa-solid fa-code"></i> VS Code</div>
-            <div class="skill-pill"><i class="fa-brands fa-chrome"></i> Chrome DevTools</div>
-            <div class="skill-pill"><i class="fa-solid fa-rocket"></i> Antigravity IDE</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-brands fa-git-alt"></i> Git Version Control</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-brands fa-github"></i> GitHub</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-solid fa-code"></i> VS Code</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-brands fa-chrome"></i> Chrome DevTools</div>
+            <div class="skill-pill"><span class="pill-dot"></span><i class="fa-solid fa-rocket"></i> Antigravity IDE</div>
+          </div>
+        </div>
+
+        <!-- Bento 5 (Full Width Accent): Academic Coursework & Current Focus -->
+        <div class="skill-category-card bento-wide reveal" data-card>
+          <div class="bento-wide-content">
+            <div class="bento-wide-left">
+              <span class="bento-label">// CURRENT FOCUS &middot; VESIT 2026</span>
+              <h3>Coursework &amp; Active Exploration</h3>
+              <p>Reinforcing software engineering principles through academic problem sets, lab sessions, and independent coding.</p>
+            </div>
+            <div class="bento-wide-right">
+              <div class="focus-pill"><i class="fa-solid fa-terminal"></i> <span>DSA Drills &amp; LeetCode</span></div>
+              <div class="focus-pill"><i class="fa-solid fa-book-open"></i> <span>Java Object Design</span></div>
+            </div>
           </div>
         </div>
 
@@ -245,73 +454,76 @@
     <!-- Certifications Section -->
     <section class="section" id="certifications">
       <div class="section-header reveal">
-        <span class="section-subtitle">Hackathons & Learning</span>
-        <h2 class="section-title">Certifications & <span class="gradient-text">Hackathons</span></h2>
-        <p class="section-description">Participation certificates and achievements from hackathons and technical competitions.</p>
+        <div class="section-title-line-wrap">
+          <span class="section-index-num">03.</span>
+          <h2 class="section-title">Certifications &amp; <span class="neon-text">Hackathons</span></h2>
+          <div class="section-rule-line" aria-hidden="true"></div>
+        </div>
+        <p class="section-description">Competitive programming and hackathon certificates earned through fast-paced problem solving.</p>
       </div>
 
       <div class="grid cards-grid">
         
         <!-- Certificate 1: Hack-AI-Thon 4.0 -->
-        <article class="card reveal">
+        <article class="card reveal" data-card>
           <div class="card-top-bar">
-            <div class="card-icon"><i class="fa-solid fa-trophy"></i></div>
-            <span class="card-tag">Certificate of Achievement</span>
+            <span class="card-index">// CERT_01</span>
+            <span class="card-tag">Achievement</span>
           </div>
 
-          <a href="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" target="_blank" rel="noopener noreferrer" class="cert-preview cert-modal-trigger" data-cert-src="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" data-cert-title="Hack-AI-Thon 4.0" data-cert-issuer="AI-CoLegion, Dept. of AI &amp; DS, VESIT" aria-haspopup="dialog" title="Click to view full certificate">
+          <a href="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" target="_blank" rel="noopener noreferrer" class="cert-preview cert-modal-trigger" data-cert-src="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" data-cert-title="Hack-AI-Thon 4.0" data-cert-issuer="AI-CoLegion, Dept. of AI &amp; DS, VESIT" aria-haspopup="dialog" title="Click to preview certificate">
             <img src="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" alt="Hack-AI-Thon 4.0 Certificate of Achievement" width="600" height="412" loading="lazy" decoding="async" />
             <div class="cert-preview-overlay">
               <i class="fa-solid fa-magnifying-glass-plus"></i>
-              <span>Quick Preview</span>
+              <span>Click to Enlarge</span>
             </div>
           </a>
 
           <h3>Hack-AI-Thon 4.0</h3>
-          <p class="cert-issuer"><i class="fa-solid fa-building-columns"></i> AI-CoLegion, Dept. of AI & DS, VESIT</p>
-          <p>Awarded for successful completion of the 24-hour online Hack-AI-Thon 4.0 organized by AI-CoLegion at VESIT, collaborating to build software solutions under fast-paced constraints.</p>
+          <p class="cert-issuer"><i class="fa-solid fa-building-columns"></i> AI-CoLegion, Dept. of AI &amp; DS, VESIT</p>
+          <p>Awarded for 24-hour sprint at Hack-AI-Thon 4.0, working closely in a team environment to design and deploy software solutions within strict time limits.</p>
           
           <div class="tags">
-            <span><i class="fa-solid fa-clock"></i> 24-Hour Hackathon</span>
-            <span><i class="fa-solid fa-brain"></i> AI & Data Science</span>
+            <span><i class="fa-solid fa-clock"></i> 24-Hour Sprint</span>
+            <span><i class="fa-solid fa-microchip"></i> AI &amp; Software</span>
             <span><i class="fa-solid fa-users"></i> Teamwork</span>
           </div>
 
           <div class="card-actions">
             <a href="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" target="_blank" rel="noopener noreferrer" class="card-link primary cert-modal-trigger" data-cert-src="src/Hack-AI-Thon%204.0%20(AI-CoLegion)%20Certificate.png" data-cert-title="Hack-AI-Thon 4.0" data-cert-issuer="AI-CoLegion, Dept. of AI &amp; DS, VESIT" aria-haspopup="dialog" aria-label="View Hack-AI-Thon 4.0 Certificate">
-              <i class="fa-solid fa-expand"></i> View Certificate
+              <i class="fa-solid fa-expand"></i> Preview Credential
             </a>
           </div>
         </article>
 
         <!-- Certificate 2: SYRUS Hackathon (MARCH 2026) -->
-        <article class="card reveal">
+        <article class="card reveal" data-card>
           <div class="card-top-bar">
-            <div class="card-icon"><i class="fa-solid fa-award"></i></div>
-            <span class="card-tag">Certificate of Participation</span>
+            <span class="card-index">// CERT_02</span>
+            <span class="card-tag">Participation</span>
           </div>
 
-          <a href="src/SYRUS-CodeCell%20VESIT%20Certificate.png" target="_blank" rel="noopener noreferrer" class="cert-preview cert-modal-trigger" data-cert-src="src/SYRUS-CodeCell%20VESIT%20Certificate.png" data-cert-title="SYRUS Hackathon (MARCH 2026)" data-cert-issuer="CodeCell++, Dept. of CMPN, VESIT" aria-haspopup="dialog" title="Click to view full certificate">
+          <a href="src/SYRUS-CodeCell%20VESIT%20Certificate.png" target="_blank" rel="noopener noreferrer" class="cert-preview cert-modal-trigger" data-cert-src="src/SYRUS-CodeCell%20VESIT%20Certificate.png" data-cert-title="SYRUS Hackathon (MARCH 2026)" data-cert-issuer="CodeCell++, Dept. of CMPN, VESIT" aria-haspopup="dialog" title="Click to preview certificate">
             <img src="src/SYRUS-CodeCell%20VESIT%20Certificate.png" alt="SYRUS Hackathon (MARCH 2026) Certificate of Participation" width="600" height="412" loading="lazy" decoding="async" />
             <div class="cert-preview-overlay">
               <i class="fa-solid fa-magnifying-glass-plus"></i>
-              <span>Quick Preview</span>
+              <span>Click to Enlarge</span>
             </div>
           </a>
 
           <h3>SYRUS Hackathon (MARCH 2026)</h3>
           <p class="cert-issuer"><i class="fa-solid fa-building-columns"></i> CodeCell++, Dept. of CMPN, VESIT</p>
-          <p>Participated in the industry-sponsored SYRUS Hackathon organized by CodeCell++ in association with IIC and IQAC at VESIT, developing innovative technical solutions under industry mentorship.</p>
+          <p>Participated in the industry-backed SYRUS Hackathon hosted by CodeCell++ with IIC and IQAC at VESIT, building innovative engineering prototypes.</p>
           
           <div class="tags">
             <span><i class="fa-solid fa-handshake"></i> Industry Sponsored</span>
-            <span><i class="fa-solid fa-laptop-code"></i> CodeCell++ VESIT</span>
+            <span><i class="fa-solid fa-code"></i> CodeCell++ VESIT</span>
             <span><i class="fa-solid fa-calendar"></i> March 2026</span>
           </div>
 
           <div class="card-actions">
             <a href="src/SYRUS-CodeCell%20VESIT%20Certificate.png" target="_blank" rel="noopener noreferrer" class="card-link primary cert-modal-trigger" data-cert-src="src/SYRUS-CodeCell%20VESIT%20Certificate.png" data-cert-title="SYRUS Hackathon (MARCH 2026)" data-cert-issuer="CodeCell++, Dept. of CMPN, VESIT" aria-haspopup="dialog" aria-label="View SYRUS Hackathon Certificate">
-              <i class="fa-solid fa-expand"></i> View Certificate
+              <i class="fa-solid fa-expand"></i> Preview Credential
             </a>
           </div>
         </article>
@@ -319,94 +531,117 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section with Balanced Two-Column Split Console -->
     <section class="section contact" id="contact">
-      <div class="contact-box reveal">
-        <span class="section-subtitle">Get In Touch</span>
-        <h2>Let's <span class="gradient-text">Connect</span></h2>
-        <p class="contact-intro">I'm always eager to learn, collaborate on projects, or discuss engineering concepts. Feel free to drop a message!</p>
+      <div class="section-header reveal">
+        <div class="section-title-line-wrap">
+          <span class="section-index-num">04.</span>
+          <h2 class="section-title">Let's <span class="neon-text">Connect</span></h2>
+          <div class="section-rule-line" aria-hidden="true"></div>
+        </div>
+        <p class="section-description">Looking for software engineering internship opportunities, project collaborations, or technical discussions. Direct contact below.</p>
+      </div>
+
+      <div class="contact-split-console reveal">
         
-        <div class="contact-cta-wrapper">
-          <a href="mailto:haribhambhani24@gmail.com" class="btn primary-btn contact-primary-cta">
-            <i class="fa-solid fa-paper-plane"></i>
-            <span>Say Hello 👋</span>
-          </a>
+        <!-- Left: Direct Channels & Information Card -->
+        <div class="contact-details-panel">
+          <div class="panel-header">
+            <span class="panel-tag">// DIRECT CHANNELS</span>
+            <h3>Quick Touchpoints</h3>
+            <p>Click to copy details or launch directly in your apps.</p>
+          </div>
+
+          <div class="contact-cards-stack">
+            <!-- Email Item with Copy -->
+            <div class="contact-card-interactive">
+              <a href="mailto:haribhambhani24@gmail.com" class="contact-card" title="Send Email">
+                <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="contact-info">
+                  <span class="contact-label">Email Address</span>
+                  <span class="contact-val">haribhambhani24@gmail.com</span>
+                </div>
+              </a>
+              <button class="copy-btn" data-copy="haribhambhani24@gmail.com" aria-label="Copy email address to clipboard" title="Copy Email">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+
+            <!-- Phone Item with Copy -->
+            <div class="contact-card-interactive">
+              <a href="tel:+919320474520" class="contact-card" title="Call directly">
+                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                <div class="contact-info">
+                  <span class="contact-label">Phone</span>
+                  <span class="contact-val">+91 9320474520</span>
+                </div>
+              </a>
+              <button class="copy-btn" data-copy="+919320474520" aria-label="Copy phone number to clipboard" title="Copy Phone">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/hari-bhambhani" target="_blank" rel="noopener noreferrer" class="contact-card" title="Open LinkedIn Profile">
+              <div class="contact-icon"><i class="fa-brands fa-linkedin"></i></div>
+              <div class="contact-info">
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-val">in/hari-bhambhani</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square contact-ext-icon"></i>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/haribhambhani24" target="_blank" rel="noopener noreferrer" class="contact-card" title="Open GitHub Profile">
+              <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="contact-info">
+                <span class="contact-label">GitHub</span>
+                <span class="contact-val">@haribhambhani24</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square contact-ext-icon"></i>
+            </a>
+          </div>
+
+          <div class="contact-meta-box">
+            <div class="meta-row"><i class="fa-solid fa-location-dot"></i> <span>VESIT, Chembur, Mumbai, Maharashtra, India</span></div>
+            <div class="meta-row"><i class="fa-solid fa-clock"></i> <span>Available for Summer Internships</span></div>
+          </div>
         </div>
 
-        <!-- Interactive Direct Connect Links with Copy Actions -->
-        <div class="contact-links" aria-label="Contact information and social links">
-          
-          <a href="https://github.com/haribhambhani24" target="_blank" rel="noopener noreferrer" class="contact-card" title="Open GitHub Profile">
-            <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
-            <div class="contact-info">
-              <span class="contact-label">GitHub</span>
-              <span class="contact-val">@haribhambhani24</span>
+        <!-- Right: Interactive Message Console -->
+        <div class="contact-form-panel">
+          <form class="quick-contact-form" id="quickContactForm">
+            <div class="form-header">
+              <span class="panel-tag">// DISPATCH MESSAGE</span>
+              <h3>Send a Direct Note</h3>
             </div>
-            <i class="fa-solid fa-arrow-up-right-from-square contact-ext-icon"></i>
-          </a>
 
-          <a href="https://www.linkedin.com/in/hari-bhambhani" target="_blank" rel="noopener noreferrer" class="contact-card" title="Open LinkedIn Profile">
-            <div class="contact-icon"><i class="fa-brands fa-linkedin"></i></div>
-            <div class="contact-info">
-              <span class="contact-label">LinkedIn</span>
-              <span class="contact-val">in/hari-bhambhani</span>
+            <div class="form-row">
+              <div class="input-group">
+                <label for="senderName">Your Name</label>
+                <input type="text" id="senderName" name="name" placeholder="e.g. Alex Johnson" required />
+              </div>
+              <div class="input-group">
+                <label for="senderEmail">Your Email</label>
+                <input type="email" id="senderEmail" name="email" placeholder="e.g. alex@company.com" required />
+              </div>
             </div>
-            <i class="fa-solid fa-arrow-up-right-from-square contact-ext-icon"></i>
-          </a>
 
-          <div class="contact-card-interactive">
-            <a href="tel:+919320474520" class="contact-card" title="Call directly">
-              <div class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-              <div class="contact-info">
-                <span class="contact-label">Phone</span>
-                <span class="contact-val">+91 9320474520</span>
+            <div class="input-group">
+              <div class="label-row">
+                <label for="senderMessage">Message</label>
+                <span class="char-counter" id="charCounter">0 / 500</span>
               </div>
-            </a>
-            <button class="copy-btn" data-copy="+919320474520" aria-label="Copy phone number to clipboard" title="Copy Phone">
-              <i class="fa-regular fa-copy"></i>
-            </button>
-          </div>
+              <textarea id="senderMessage" name="message" rows="5" maxlength="500" placeholder="Hi Hari, I'd like to discuss an opportunity / project with you..." required></textarea>
+            </div>
 
-          <div class="contact-card-interactive">
-            <a href="mailto:haribhambhani24@gmail.com" class="contact-card" title="Send Email">
-              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-              <div class="contact-info">
-                <span class="contact-label">Email</span>
-                <span class="contact-val">haribhambhani24@gmail.com</span>
-              </div>
-            </a>
-            <button class="copy-btn" data-copy="haribhambhani24@gmail.com" aria-label="Copy email address to clipboard" title="Copy Email">
-              <i class="fa-regular fa-copy"></i>
+            <button type="submit" class="btn primary-btn submit-btn" id="submitBtn">
+              <span>Send Message</span>
+              <i class="fa-solid fa-paper-plane"></i>
             </button>
-          </div>
-
+          </form>
         </div>
 
-        <!-- Quick Interactive Message Box -->
-        <form class="quick-contact-form" id="quickContactForm">
-          <h3>Send a Quick Message</h3>
-          <div class="form-row">
-            <div class="input-group">
-              <label for="senderName">Your Name</label>
-              <input type="text" id="senderName" name="name" placeholder="e.g. Alex Johnson" required />
-            </div>
-            <div class="input-group">
-              <label for="senderEmail">Your Email</label>
-              <input type="email" id="senderEmail" name="email" placeholder="e.g. alex@example.com" required />
-            </div>
-          </div>
-          <div class="input-group">
-            <div class="label-row">
-              <label for="senderMessage">Message</label>
-              <span class="char-counter" id="charCounter">0 / 500</span>
-            </div>
-            <textarea id="senderMessage" name="message" rows="4" maxlength="500" placeholder="Hi Hari, I'd love to discuss..." required></textarea>
-          </div>
-          <button type="submit" class="btn primary-btn submit-btn" id="submitBtn">
-            <span>Send Message</span>
-            <i class="fa-solid fa-paper-plane"></i>
-          </button>
-        </form>
       </div>
     </section>
   </main>
@@ -414,10 +649,11 @@
   <!-- Footer -->
   <footer>
     <div class="footer-content">
-      <p>© 2026 <span class="gradient-text font-bold">Hari Bhambhani</span>. Built with HTML, CSS & JavaScript.</p>
-      <p class="footer-subtext">2nd Year Computer Engineering Student at VESIT, Mumbai.</p>
+      <p>&copy; 2026 <span class="neon-text font-bold">Hari Bhambhani</span> &middot; VESIT Computer Engineering</p>
     </div>
   </footer>
+
+  </div> <!-- End of .page-architectural-wrapper -->
 
   <!-- Floating Scroll To Top Button -->
   <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll back to top of page">
@@ -454,6 +690,7 @@
     </div>
   </dialog>
 
-  <script src="script.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="script.js?v=neon-v29"></script>
 </body>
 </html>

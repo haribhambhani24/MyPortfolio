@@ -5,11 +5,38 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  // --- 0. Entry Splash Screen Controller with Hexagonal 'H' Logo ---
+  const splashScreen = document.getElementById("splashScreen");
+  let splashDismissed = false;
+
+  function dismissSplash() {
+    if (splashDismissed) return;
+    splashDismissed = true;
+    if (splashScreen) {
+      splashScreen.classList.add("fade-out");
+      document.body.classList.remove("loading");
+      setTimeout(() => {
+        splashScreen.style.display = "none";
+      }, 700);
+    } else {
+      document.body.classList.remove("loading");
+    }
+  }
+
+  // Display 'H' logo animation for 2.3 seconds, then smoothly reveal the main page
+  setTimeout(dismissSplash, 2300);
+
+  // Click or touch to skip instantly
+  if (splashScreen) {
+    splashScreen.addEventListener("click", dismissSplash);
+  }
+
   // --- 1. Dynamic Typewriter Effect ---
   const words = [
-    "OOP with Java.",
-    "DSA.",
-    "DBMS & SQL."
+    "Java & OOP Principles.",
+    "Data Structures & Algorithms.",
+    "DBMS & SQL Queries.",
+    "Responsive Web Applications."
   ];
   let wordIndex = 0;
   let charIndex = 0;
@@ -96,7 +123,63 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- 3. Navbar Sticky State, Scroll Progress, & Scroll-to-Top Button ---
+  // --- 3. Buttery Smooth Inertial Scrolling (Lenis Engine & RAF Lerp) ---
+  let lenis = null;
+  if (typeof Lenis !== "undefined" && !prefersReducedMotion) {
+    lenis = new Lenis({
+      duration: 1.25,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential ease-out curve
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.6,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Smooth anchor navigation for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        if (href === "#" || !href) return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          closeMobileNav();
+          lenis.scrollTo(target, {
+            offset: -75,
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+        }
+      });
+    });
+  } else {
+    // Native fallback smooth anchor navigation
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        if (href === "#" || !href) return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          closeMobileNav();
+          target.scrollIntoView({
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+            block: "start"
+          });
+        }
+      });
+    });
+  }
+
+  // --- 4. Navbar Sticky State, Scroll Progress, & Scroll-to-Top Button ---
   const navbar = document.getElementById("navbar");
   const scrollTopBtn = document.getElementById("scrollTopBtn");
   const scrollProgressBar = document.getElementById("scrollProgressBar");
@@ -106,89 +189,102 @@ document.addEventListener("DOMContentLoaded", () => {
   // Feature detection for native CSS scroll timeline
   const hasNativeScrollTimeline = window.CSS && CSS.supports && CSS.supports("animation-timeline", "scroll()");
 
-  function updateActiveNav() {
-    const scrollPosition = window.scrollY + 160;
+  // Pre-cached section boundaries for rock-solid 120fps scroll performance
+  let sectionMetrics = [];
+  function cacheSectionMetrics() {
+    sectionMetrics = Array.from(sections).map((sec) => ({
+      id: sec.getAttribute("id"),
+      top: sec.offsetTop,
+      bottom: sec.offsetTop + sec.offsetHeight
+    }));
+  }
+  cacheSectionMetrics();
+  window.addEventListener("resize", cacheSectionMetrics, { passive: true });
 
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute("id");
-
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+  function updateActiveNav(scrollY) {
+    const scrollPosition = scrollY + 160;
+    for (let i = 0; i < sectionMetrics.length; i++) {
+      const sec = sectionMetrics[i];
+      if (scrollPosition >= sec.top && scrollPosition < sec.bottom) {
         navLinks.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${sectionId}`) {
-            link.classList.add("active");
-          }
+          link.classList.toggle("active", link.getAttribute("href") === `#${sec.id}`);
         });
+        break;
       }
-    });
+    }
   }
 
-  // Throttled scroll listener using requestAnimationFrame for smooth 60/120fps UX
-  let scrollTicking = false;
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!scrollTicking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
+  function handleScrollUpdate(scrollY) {
+    if (navbar) {
+      navbar.classList.toggle("scrolled", scrollY > 30);
+    }
+    if (scrollTopBtn) {
+      scrollTopBtn.classList.toggle("visible", scrollY > 350);
+    }
+    updateActiveNav(scrollY);
+    if (!hasNativeScrollTimeline && scrollProgressBar) {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? scrollY / scrollable : 0;
+      scrollProgressBar.style.transform = `scaleX(${progress})`;
+    }
+  }
 
-          // Navbar shadow & blur
-          if (navbar) {
-            navbar.classList.toggle("scrolled", scrollY > 30);
-          }
-
-          // Scroll to top button visibility
-          if (scrollTopBtn) {
-            scrollTopBtn.classList.toggle("visible", scrollY > 350);
-          }
-
-          // Active nav highlight
-          updateActiveNav();
-
-          // Scroll progress fallback for browsers without CSS animation-timeline (e.g. Firefox)
-          if (!hasNativeScrollTimeline && scrollProgressBar) {
-            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = scrollable > 0 ? scrollY / scrollable : 0;
-            scrollProgressBar.style.transform = `scaleX(${progress})`;
-          }
-
-          scrollTicking = false;
-        });
-        scrollTicking = true;
-      }
-    },
-    { passive: true }
-  );
+  // Sync scroll listener with Lenis if available, otherwise throttled window scroll
+  if (lenis) {
+    lenis.on("scroll", (e) => {
+      handleScrollUpdate(e.scroll);
+    });
+  } else {
+    let scrollTicking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!scrollTicking) {
+          window.requestAnimationFrame(() => {
+            handleScrollUpdate(window.scrollY);
+            scrollTicking = false;
+          });
+          scrollTicking = true;
+        }
+      },
+      { passive: true }
+    );
+  }
 
   if (scrollTopBtn) {
     scrollTopBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: prefersReducedMotion ? "auto" : "smooth"
-      });
+      if (lenis) {
+        lenis.scrollTo(0, { duration: 1.3 });
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion ? "auto" : "smooth"
+        });
+      }
     });
   }
 
   // Initial call on load
-  updateActiveNav();
+  handleScrollUpdate(window.scrollY);
 
-  // --- 4. Scroll Reveal Animations ---
+  // --- 4. Satisfying Scroll Reveal Animations & Card Spotlight ---
   const revealElements = document.querySelectorAll(".reveal");
 
   if ("IntersectionObserver" in window && !prefersReducedMotion) {
     const revealObserver = new IntersectionObserver(
       (entries, observer) => {
-        entries.forEach((entry) => {
+        entries.forEach((entry, idx) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("active");
+            // Subtle stagger effect for adjacent cards entering the viewport together
+            setTimeout(() => {
+              entry.target.classList.add("active");
+            }, idx * 60);
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.12,
+        threshold: 0.1,
         rootMargin: "0px 0px -40px 0px"
       }
     );
@@ -198,6 +294,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fallback if IntersectionObserver is not supported or reduced motion requested
     revealElements.forEach((el) => el.classList.add("active"));
   }
+
+  // Card Interactive Spotlight Effect (Tracks cursor position on cards)
+  const interactiveCards = document.querySelectorAll(".card, .skill-category-card");
+  interactiveCards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    });
+  });
 
   // --- 5. Accessible Certificate Lightbox Modal (<dialog>) ---
   const certModal = document.getElementById("certModal");
