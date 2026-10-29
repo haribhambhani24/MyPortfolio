@@ -3,7 +3,8 @@
 <div align="center">
 
 <p>
-  <a href="https://haribhambhani24.github.io/MyPortfolio/"><img src="https://img.shields.io/badge/Live_Site-Online-10b981?style=flat&logo=googlechrome&logoColor=white&labelColor=0d1117" alt="Live Site" /></a>
+  <a href="https://haribhambhani-portfolio.vercel.app/"><img src="https://img.shields.io/badge/Vercel-Online-000000?style=flat&logo=vercel&logoColor=white&labelColor=0d1117" alt="Vercel Live Site" /></a>
+  <a href="https://haribhambhani24.github.io/MyPortfolio/"><img src="https://img.shields.io/badge/GitHub_Pages-Active-10b981?style=flat&logo=github&logoColor=white&labelColor=0d1117" alt="GitHub Pages" /></a>
   <img src="https://img.shields.io/badge/VESIT-BTech_'29-10b981?style=flat&labelColor=0d1117" alt="VESIT BTech '29" />
   <img src="https://img.shields.io/badge/Stack-HTML5_•_CSS3_•_JS-10b981?style=flat&labelColor=0d1117" alt="Stack" />
   <img src="https://img.shields.io/badge/License-MIT-10b981?style=flat&labelColor=0d1117" alt="License" />
@@ -13,7 +14,7 @@
 
 <br />
 
-[🌐 **Explore Live Portfolio**](https://haribhambhani24.github.io/MyPortfolio/) &nbsp;&bull;&nbsp; [📄 **View Resume (PDF)**](https://haribhambhani24.github.io/MyPortfolio/src/Hari_Bhambhani_Resume.pdf) &nbsp;&bull;&nbsp; [📬 **Get in Touch**](mailto:haribhambhani24@gmail.com)
+[🌐 **Explore Live Portfolio (Vercel)**](https://haribhambhani-portfolio.vercel.app/) &nbsp;&bull;&nbsp; [🌐 **GitHub Pages Mirror**](https://haribhambhani24.github.io/MyPortfolio/) &nbsp;&bull;&nbsp; [📄 **View Resume (PDF)**](https://haribhambhani-portfolio.vercel.app/src/Hari_Bhambhani_Resume.pdf) &nbsp;&bull;&nbsp; [📬 **Get in Touch**](mailto:haribhambhani24@gmail.com)
 
 </div>
 
@@ -36,6 +37,7 @@ This portfolio is hand-crafted with Vanilla web technologies to reflect an execu
 - **Interactive Cursor Spotlight**: Real-time cursor coordinates tracking on cards for an ambient luminescent glow effect.
 - **Tactile Clipboard Interactions**: One-click copy for Phone and Email with immediate icon morphing, checkmark micro-animation, and floating toast notifications.
 - **Native Lightbox Modal Dialog**: Accessible HTML5 `<dialog>` with light-dismiss behavior (<kbd>ESC</kbd> key or backdrop click) for instant full-resolution certificate previews.
+- **Direct Dispatch Note Console**: Visitors can transmit direct messages with live character counter (`0 / 500`) and client validation without opening external mail apps.
 - **Responsive Architecture**: Fluid layout with 3-column quick stats, adaptive Bento grids, collapsible hamburger navigation, and zero horizontal scroll on mobile viewports.
 
 ---
@@ -61,11 +63,23 @@ This portfolio is hand-crafted with Vanilla web technologies to reflect an execu
 │ • Java (Core & OOP)             │ • Object-Oriented Programming   │
 │ • SQL (Relational Queries)      │ • Data Structures & Algorithms  │
 │                                 │ • Database Management (DBMS)    │
+├─────────────────────────────────┼─────────────────────────────────┤
+│ 03. WEB FOUNDATIONS             │ 04. DEVELOPER ENVIRONMENT       │
+│ • Semantic HTML5                │ • Git & GitHub                  │
+│ • CSS3 Flexbox & Grid           │ • VS Code & Antigravity IDE     │
+│ • Vanilla JavaScript            │ • Chrome DevTools               │
 ├─────────────────────────────────┴─────────────────────────────────┤
-│ 03. APPLIED FOCUS & PROBLEM SOLVING                               │
+│ 05. APPLIED FOCUS & PROBLEM SOLVING                               │
 │ • DSA Drills & LeetCode         │ • Java Object Design            │
 └───────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 💻 Projects Showcase
+
+- **Personal Portfolio Website** (`Live`): Fast, accessible, minimalist portfolio featuring electric neon accents, specular sheen cards, and native dialog certificate inspection.
+- **Attendance Tracker** (`In Progress`): College coursework software automating student attendance records, subject-wise threshold analytics, and shortage deficit notifications using Java and SQL.
 
 ---
 
@@ -111,11 +125,11 @@ cd MyPortfolio
 ### 2. Launch a local web server
 You can use Python's built-in HTTP server or VS Code's Live Server:
 
-**Using Python (Quickest)**:
+**Using Python**:
 ```bash
-python -m http.server 3000
+python -m http.server 8080
 ```
-Then open [http://localhost:3000](http://localhost:3000) in your browser.
+Then open [http://localhost:8080](http://localhost:8080) in your browser.
 
 **Using VS Code Live Server**:
 1. Open the folder in VS Code.
@@ -126,6 +140,7 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 ## 📬 Contact & Connect
 
 - **Email**: [haribhambhani24@gmail.com](mailto:haribhambhani24@gmail.com)
+- **Phone**: [+91 9320474520](tel:+919320474520)
 - **LinkedIn**: [linkedin.com/in/hari-bhambhani](https://www.linkedin.com/in/hari-bhambhani)
 - **GitHub**: [github.com/haribhambhani24](https://github.com/haribhambhani24)
 - **Location**: VESIT, Chembur, Mumbai, Maharashtra, India
