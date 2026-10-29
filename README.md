@@ -3,8 +3,7 @@
 <div align="center">
 
 <p>
-  <a href="https://haribhambhani-portfolio.vercel.app/"><img src="https://img.shields.io/badge/Vercel-Online-000000?style=flat&logo=vercel&logoColor=white&labelColor=0d1117" alt="Vercel Live Site" /></a>
-  <a href="https://haribhambhani24.github.io/MyPortfolio/"><img src="https://img.shields.io/badge/GitHub_Pages-Active-10b981?style=flat&logo=github&logoColor=white&labelColor=0d1117" alt="GitHub Pages" /></a>
+  <a href="https://haribhambhani-portfolio.vercel.app/"><img src="https://img.shields.io/badge/Live_Site-Online-10b981?style=flat&logo=vercel&logoColor=white&labelColor=0d1117" alt="Live Site" /></a>
   <img src="https://img.shields.io/badge/VESIT-BTech_'29-10b981?style=flat&labelColor=0d1117" alt="VESIT BTech '29" />
   <img src="https://img.shields.io/badge/Stack-HTML5_•_CSS3_•_JS-10b981?style=flat&labelColor=0d1117" alt="Stack" />
   <img src="https://img.shields.io/badge/License-MIT-10b981?style=flat&labelColor=0d1117" alt="License" />
@@ -14,7 +13,7 @@
 
 <br />
 
-[🌐 **Explore Live Portfolio (Vercel)**](https://haribhambhani-portfolio.vercel.app/) &nbsp;&bull;&nbsp; [🌐 **GitHub Pages Mirror**](https://haribhambhani24.github.io/MyPortfolio/) &nbsp;&bull;&nbsp; [📄 **View Resume (PDF)**](https://haribhambhani-portfolio.vercel.app/src/Hari_Bhambhani_Resume.pdf) &nbsp;&bull;&nbsp; [📬 **Get in Touch**](mailto:haribhambhani24@gmail.com)
+[🌐 **Explore Live Portfolio**](https://haribhambhani-portfolio.vercel.app/) &nbsp;&bull;&nbsp; [📄 **View Resume (PDF)**](https://haribhambhani-portfolio.vercel.app/src/Hari_Bhambhani_Resume.pdf) &nbsp;&bull;&nbsp; [📬 **Get in Touch**](mailto:haribhambhani24@gmail.com)
 
 </div>
 
