@@ -77,7 +77,8 @@ This portfolio is hand-crafted with Vanilla web technologies to reflect an execu
 
 ## 💻 Projects Showcase
 
-- **Personal Portfolio Website** (`Live`): Fast, accessible, minimalist portfolio featuring electric neon accents, specular sheen cards, and native dialog certificate inspection.
+- **Personal Portfolio Website** (`Live`): Fast, accessible, minimalist portfolio featuring electric neon accents, specular sheen cards, and native dialog certificate inspection. [[Live Demo](https://haribhambhani-portfolio.vercel.app/)] &bull; [[GitHub](https://github.com/haribhambhani24/MyPortfolio)]
+- **Bank Management System** (`Live`): Academic DBMS coursework MicroProject featuring a relational MySQL schema, automated ledger auditing triggers, ACID fund transfers, and a glassmorphic dashboard. [[Live Demo](https://bank-management-system-forked.vercel.app/)] &bull; [[GitHub](https://github.com/haribhambhani24/Bank-Management-System_forked)]
 <!-- - **Attendance Tracker** (`In Progress`): College coursework software automating student attendance records, subject-wise threshold analytics, and shortage deficit notifications using Java and SQL. -->
 
 ---
