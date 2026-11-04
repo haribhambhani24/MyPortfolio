@@ -78,7 +78,7 @@ This portfolio is hand-crafted with Vanilla web technologies to reflect an execu
 ## 💻 Projects Showcase
 
 - **Personal Portfolio Website** (`Live`): Fast, accessible, minimalist portfolio featuring electric neon accents, specular sheen cards, and native dialog certificate inspection.
-- **Attendance Tracker** (`In Progress`): College coursework software automating student attendance records, subject-wise threshold analytics, and shortage deficit notifications using Java and SQL.
+<!-- - **Attendance Tracker** (`In Progress`): College coursework software automating student attendance records, subject-wise threshold analytics, and shortage deficit notifications using Java and SQL. -->
 
 ---
 
