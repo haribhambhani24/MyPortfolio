@@ -1083,6 +1083,7 @@ body.loading {
    Scroll Down Indicator (Inspired by reference)
    ========================================================================== */
 .scroll-wrapper {
+  display: none !important;
   position: absolute;
   bottom: 1.6rem;
   left: 50%;
