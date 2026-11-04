@@ -2105,6 +2105,13 @@ body.loading {
   width: 100%;
   justify-content: center;
   margin-top: 0.5rem;
+  transition: all var(--transition-medium);
+}
+
+.submit-btn.sent-success {
+  background: var(--neon-green) !important;
+  color: #07080a !important;
+  box-shadow: 0 0 25px rgba(0, 255, 102, 0.45);
 }
 
 /* --- Toast Notifications --- */

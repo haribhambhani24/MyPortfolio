@@ -437,11 +437,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- 8. Form Character Counter & Interactive Submission ---
+  // --- 8. Direct Message Dispatcher via Web3Forms API (No Mail App Required) ---
   const quickContactForm = document.getElementById("quickContactForm");
   const senderMessage = document.getElementById("senderMessage");
   const charCounter = document.getElementById("charCounter");
   const submitBtn = document.getElementById("submitBtn");
+
+  // Web3Forms Access Key:
+  // Enter your free Web3Forms access key below (get instant free key at https://web3forms.com)
+  const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
 
   if (senderMessage && charCounter) {
     const maxLength = parseInt(senderMessage.getAttribute("maxlength") || "500", 10);
@@ -461,35 +465,114 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (quickContactForm) {
-    quickContactForm.addEventListener("submit", (e) => {
+    quickContactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const senderName = document.getElementById("senderName")?.value.trim() || "Friend";
-      const senderEmail = document.getElementById("senderEmail")?.value.trim() || "";
-      const senderMessageVal = document.getElementById("senderMessage")?.value.trim() || "";
 
-      if (!senderEmail || !senderMessageVal) {
-        showToast("Please fill out all fields.", "fa-solid fa-circle-exclamation");
+      // 1. Anti-bot honeypot check (Web3Forms botcheck)
+      const botcheck = document.getElementById("botcheck");
+      if (botcheck && botcheck.checked) {
+        quickContactForm.reset();
+        if (charCounter) charCounter.textContent = "0 / 500";
+        showToast("Your message was dispatched.", "fa-solid fa-circle-check");
         return;
       }
 
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span>Opening email client...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
+      // 2. Strict Input Validation
+      const senderName = document.getElementById("senderName")?.value.trim() || "";
+      const senderEmail = document.getElementById("senderEmail")?.value.trim() || "";
+      const senderMessageVal = document.getElementById("senderMessage")?.value.trim() || "";
+
+      if (!senderName || senderName.length < 2) {
+        showToast("Please provide your name (at least 2 characters).", "fa-solid fa-circle-exclamation");
+        return;
       }
 
-      const mailtoUrl = `mailto:haribhambhani24@gmail.com?subject=Inquiry from ${encodeURIComponent(senderName)}&body=${encodeURIComponent(`From: ${senderName} (${senderEmail})\n\n${senderMessageVal}`)}`;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      if (!senderEmail || !emailRegex.test(senderEmail)) {
+        showToast("Please provide a valid email address.", "fa-solid fa-circle-exclamation");
+        return;
+      }
 
-      showToast(`Thank you, ${senderName}! Opening your email client...`);
+      if (!senderMessageVal || senderMessageVal.length < 5) {
+        showToast("Please write a message (at least 5 characters).", "fa-solid fa-circle-exclamation");
+        return;
+      }
 
-      setTimeout(() => {
+      // 3. Resolve active Web3Forms Access Key
+      const keyInput = document.getElementById("web3FormsAccessKey");
+      const activeKey = (keyInput && keyInput.value && keyInput.value !== "YOUR_ACCESS_KEY_HERE")
+        ? keyInput.value.trim()
+        : (WEB3FORMS_ACCESS_KEY !== "YOUR_ACCESS_KEY_HERE" ? WEB3FORMS_ACCESS_KEY.trim() : "");
+
+      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : "";
+
+      if (!activeKey) {
+        // If access key is not yet configured, provide a seamless fallback to direct email so the user's note is never lost
+        showToast("Web3Forms key required. Opening direct email client...", "fa-solid fa-circle-info");
+        const mailtoUrl = `mailto:haribhambhani24@gmail.com?subject=Note from ${encodeURIComponent(senderName)}&body=${encodeURIComponent(`From: ${senderName} (${senderEmail})\n\n${senderMessageVal}`)}`;
         window.location.href = mailtoUrl;
-        quickContactForm.reset();
-        if (charCounter) charCounter.textContent = "0 / 500";
+        return;
+      }
+
+      // 4. Send directly via Web3Forms API (Silent background POST, no mail client opened!)
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.remove("sent-success");
+        submitBtn.innerHTML = `<span>Sending direct note...</span> <i class="fa-solid fa-circle-notch fa-spin"></i>`;
+      }
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            access_key: activeKey,
+            name: senderName,
+            email: senderEmail,
+            message: senderMessageVal,
+            subject: `Direct Note from Portfolio: ${senderName}`,
+            from_name: `${senderName} via Portfolio`
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          quickContactForm.reset();
+          if (charCounter) charCounter.textContent = "0 / 500";
+
+          if (submitBtn) {
+            submitBtn.classList.add("sent-success");
+            submitBtn.innerHTML = `<span>Message Sent!</span> <i class="fa-solid fa-circle-check"></i>`;
+          }
+
+          showToast(`Thank you, ${senderName}! Your message was sent directly to Hari.`, "fa-solid fa-circle-check");
+
+          setTimeout(() => {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.classList.remove("sent-success");
+              submitBtn.innerHTML = originalBtnHtml;
+            }
+          }, 4000);
+        } else {
+          throw new Error(result.message || "Failed to submit form");
+        }
+      } catch (err) {
+        console.warn("Web3Forms transmission error:", err);
+        showToast("Transmission error. Opening direct email fallback...", "fa-solid fa-triangle-exclamation");
+        const mailtoUrl = `mailto:haribhambhani24@gmail.com?subject=Note from ${encodeURIComponent(senderName)}&body=${encodeURIComponent(`From: ${senderName} (${senderEmail})\n\n${senderMessageVal}`)}`;
+        window.location.href = mailtoUrl;
+
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>Send Message</span> <i class="fa-solid fa-paper-plane"></i>`;
+          submitBtn.classList.remove("sent-success");
+          submitBtn.innerHTML = originalBtnHtml;
         }
-      }, 700);
+      }
     });
   }
 });

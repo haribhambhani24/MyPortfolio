@@ -610,11 +610,19 @@
 
         <!-- Right: Interactive Message Console -->
         <div class="contact-form-panel">
-          <form class="quick-contact-form" id="quickContactForm">
+          <form class="quick-contact-form" id="quickContactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
             <div class="form-header">
               <span class="panel-tag">// DISPATCH MESSAGE</span>
               <h3>Send a Direct Note</h3>
             </div>
+
+            <!-- Web3Forms Access Key & Configuration -->
+            <input type="hidden" name="access_key" id="web3FormsAccessKey" value="YOUR_ACCESS_KEY_HERE" />
+            <input type="hidden" name="subject" value="Direct Note from Portfolio" />
+            <input type="hidden" name="from_name" value="Portfolio Visitor" />
+
+            <!-- Anti-bot Honeypot Protection (Web3Forms botcheck) -->
+            <input type="checkbox" name="botcheck" id="botcheck" style="display: none;" tabindex="-1" autocomplete="off" />
 
             <div class="form-row">
               <div class="input-group">
@@ -691,6 +699,6 @@
   </dialog>
 
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-  <script src="script.js?v=neon-v29"></script>
+  <script src="script.js?v=neon-v30"></script>
 </body>
 </html>
